@@ -14,6 +14,13 @@
     "type": "git",
     "url": "https://github.com/nhnent/tui.jsdoc-template"
   },
+  "keywords": [
+    "jsdoc",
+    "jsdoc3",
+    "jsdoc-template",
+    "template",
+    "tui"
+  ],
   "dependencies": {
     "cheerio": "^0.22.0"
   },
