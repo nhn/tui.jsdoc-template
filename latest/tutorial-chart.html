@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Doc Template</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        <img src="img/toast-ui.png" width="100%" height="100%">
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Doc Template</a></h1>
+        
+            <span class="version">v1.0.0</span>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    <ol class="lnb-tab">
+        <li id="api-tab">
+            <a href="#"><h4>API</h4></a>
+        </li>
+        <li id="examples-tab">
+            <a href="#"><h4>Examples</h4></a>
+        </li>
+    </ol>
+    <div class="lnb-examples hidden"><h3>Examples</h3><ul><li><a href="tutorial-chart.html">TUI Chart</a><div class="hidden" id="chart_sub"></div></li><li><a href="tutorial-editor.html">TUI Editor</a><div class="hidden" id="editor_sub"></div></li><li><a href="tutorial-grid.html">TUI Grid</a><div class="hidden" id="grid_sub"></div></li><li><a href="tutorial-image-editor.html">TUI Image Editor</a><div class="hidden" id="image-editor_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-bookshelf.html">bookshelf</a><div class="hidden" id="module:bookshelf_sub"></div></li><li><a href="module-color_mixer.html">color/mixer</a><div class="hidden" id="module:color/mixer_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-color_mixer.html#.blend">blend</a></li><li><a href="module-color_mixer.html#.darken">darken</a></li></ul></div></li><li><a href="module-myModule.html">myModule</a><div class="hidden" id="module:myModule_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="module-myModule.html#~foo">foo</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="module-myModule.html#~bar">bar</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><div class="hidden" id="external:_jQuery.fn__sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="external-_jQuery.fn_.html#.starfairy">starfairy</a></li></ul></div></li><li><a href="external-String.html">String</a><div class="hidden" id="external:String_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="external-String.html#rot13">rot13</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="FormButton.html">FormButton</a><div class="hidden" id="FormButton_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FormButton.html#fire">fire</a></li><li><a href="FormButton.html#on">on</a></li></ul></div></li><li><a href="module-bookshelf.Book.html">Book</a><div class="hidden" id="module:bookshelf.Book_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="module-bookshelf.Book.html#title">title</a></li></ul></div></li><li><a href="tui.component.Base.html">Base</a><div class="hidden" id="tui.component.Base_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="tui.component.Base.html#data">data</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.component.Base.html#getDatum">getDatum</a></li><li><a href="tui.component.Base.html#log">log</a></li><li><a href="tui.component.Base.html#log2">log2</a></li><li><a href="tui.component.Base.html#setDatum">setDatum</a></li></ul></div></li><li><a href="tui.component.BaseChild.html">BaseChild</a><div class="hidden" id="tui.component.BaseChild_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="tui.component.BaseChild.html#data">data</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.component.BaseChild.html#getDatum">getDatum</a></li><li><a href="tui.component.BaseChild.html#log">log</a></li><li><a href="tui.component.BaseChild.html#log2">log2</a></li><li><a href="tui.component.BaseChild.html#setDatum">setDatum</a></li><li><a href="tui.component.BaseChild.html#sum">sum</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="tui.component.BaseChild.html#event:foo">foo</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Namespaces</h3><ul><li><a href="MyNamespace.html">MyNamespace</a><div class="hidden" id="MyNamespace_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="MyNamespace.html#.bar">bar</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="MyNamespace.html#.foo">foo</a></li><li><a href="MyNamespace.html#.myFunction">myFunction</a></li></ul></div></li><li><a href="tui.html">tui</a><div class="hidden" id="tui_sub"></div></li><li><a href="tui.component.html">tui.component</a><div class="hidden" id="tui.component_sub"></div></li><li><a href="tui.util.html">tui.util</a><div class="hidden" id="tui.util_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.util.html#.trim">trim</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="tui.Eventful.html">Eventful</a><div class="hidden" id="tui.Eventful_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.Eventful.html#.fire">fire</a></li><li><a href="tui.Eventful.html#.on">on</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li class="hidden"><a href="global.html#Foo">Foo</a></li><li><a href="global.html#trstr">trstr</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+<section>
+    <header>
+        
+
+        <h2>TUI Chart</h2>
+    </header>
+
+    <ul id="example-nav" class="nav nav-tabs">
+        <li role="presentation" id="example-result-btn" class="active" onclick="showResult()">
+            <a href="#">Result</a>
+        </li>
+        <li role="presentation" id="example-js-btn" class="" onclick="showJs()">
+            <a href="#">JS</a>
+        </li>
+        <li role="presentation" id="example-html-btn" class="" onclick="showHtml()">
+            <a href="#">HTML</a>
+        </li>
+    </ul>
+
+    <article>
+        
+        <iframe id="example-result" width="100%" height="800" frameborder="0" src=tutorials/chart.html></iframe>
+        <div id="example-js" class="hidden"><pre class="prettyprint source">
+    var container = document.getElementById('chart-area'),
+            data = {
+                categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+                series: [
+                    {
+                        name: 'Budget',
+                        data: [5000, 3000, 5000, 7000, 6000, 4000]
+                    },
+                    {
+                        name: 'Income',
+                        data: [8000, 1000, 7000, 2000, 5000, 3000]
+                    },
+                    {
+                        name: 'Expenses',
+                        data: [4000, 4000, 6000, 3000, 4000, 5000]
+                    },
+                    {
+                        name: 'Debt',
+                        data: [6000, 3000, 3000, 1000, 2000, 4000]
+                    }
+                ]
+            },
+            options = {
+                chart: {
+                    width: 700,
+                    height: 400,
+                    title: 'Monthly Revenue',
+                    format: '1,000'
+                },
+                yAxis: {
+                    title: 'Month'
+                },
+                xAxis: {
+                    title: 'Amount',
+                    min: 0,
+                    max: 9000
+                }
+            };
+    tui.chart.barChart(container, data, options);
+</pre></div>
+        <div id="example-html" class="hidden"><pre class="prettyprint source">
+    &lt;div id="chart-area">&lt;/div>
+    &lt;div class="custom-area">
+        &lt;div class="apply-btn-area">
+            &lt;input type="checkbox" id="use-theme" onclick="onCheckboxClick(this);">&lt;label for="use-theme">&amp;nbsp;Theme&lt;/label>
+            &amp;nbsp; &amp;nbsp;
+            &lt;button id="btn" onclick="onBtnClick();">Apply Custom Data&lt;/button>
+            &lt;input type="hidden" id="type" value="barChart">
+        &lt;/div>
+        &lt;div>
+            &lt;div>Chart Data&lt;/div>
+            &lt;textarea id="data">
+    {
+        "categories": ["June", "July", "Aug", "Sep", "Oct", "Nov"],
+        "series": [
+            {
+                "name": "Budget",
+                "data": [5000, 3000, 5000, 7000, 6000, 4000]
+            },
+            {
+                "name": "Income",
+                "data": [8000, 1000, 7000, 2000, 5000, 3000]
+
+            },
+            {
+                "name": "Expenses",
+                "data": [4000, 4000, 6000, 3000, 4000, 5000]
+            },
+            {
+                "name": "Debt",
+                "data": [6000, 3000, 3000, 1000, 2000, 4000]
+            }
+        ]
+    }
+
+            &lt;/textarea>
+        &lt;/div>
+        &lt;div>
+            &lt;div>Chart Options&lt;/div>
+            &lt;textarea id="options">
+    {
+        "chart": {
+            "width": 700,
+            "height": 400,
+            "title": "Monthly Revenue",
+            "format": "1,000"
+        },
+        "yAxis": {
+            "title": "Month"
+        },
+        "xAxis": {
+            "title": "Amount",
+            "min": 0,
+            "max": 9000
+        }
+    }
+            &lt;/textarea>
+            &lt;div class="btn-area">
+                &lt;button onclick="openWindow('https://github.nhnent.com/fe/tui.chart/wiki/table-of-supported-options')">More Options&lt;/button>
+            &lt;/div>
+        &lt;/div>
+        &lt;div id="theme-area">
+            &lt;div>Chart Theme&lt;/div>
+            &lt;textarea id="theme">
+    {
+        "series": {
+            "colors": ["#63A69F", "#F2E1AC", "#F2836B",  "#F2594B"]
+        }
+    }
+            &lt;/textarea>
+            &lt;div class="btn-area">
+                &lt;button onclick="openWindow('https://github.com/nhnent/tui.chart/wiki/tutorial#full-theme')">More Theme&lt;/button>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+</pre></div>
+    </article>
+</section>
+
+<script>
+    var exampleResult = document.getElementById('example-result');
+    var exampleJs = document.getElementById('example-js');
+    var exampleHtml = document.getElementById('example-html');
+    var exampleResultBtn = document.getElementById('example-result-btn');
+    var exampleJsBtn = document.getElementById('example-js-btn');
+    var exampleHtmlBtn = document.getElementById('example-html-btn');
+
+    function setActive(el) {
+        el.className += ' active';
+    }
+
+    function setInactive(el) {
+        el.className = el.className.replace(/\s*active\s*/g, '');
+    }
+
+    function show(el) {
+        el.className = el.className.replace(/\s*hidden\s*/g, '');
+    }
+
+    function hide(el) {
+        el.className += ' hidden';
+    }
+
+    function showJs() {
+        hide(exampleHtml);
+        hide(exampleResult);
+        setInactive(exampleHtmlBtn);
+        setInactive(exampleResultBtn);
+
+        show(exampleJs);
+        setActive(exampleJsBtn);
+    }
+
+    function showHtml() {
+        hide(exampleJs);
+        hide(exampleResult);
+        setInactive(exampleJsBtn);
+        setInactive(exampleResultBtn);
+
+        show(exampleHtml);
+        setActive(exampleHtmlBtn);
+    }
+
+    function showResult() {
+        hide(exampleJs);
+        hide(exampleHtml);
+        setInactive(exampleJsBtn);
+        setInactive(exampleHtmlBtn);
+
+        show(exampleResult);
+        setActive(exampleResultBtn);
+    }
+</script>
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment Frontend Development Lab</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        showLnbExamples();
+    </script>
+
+</body>
+</html>

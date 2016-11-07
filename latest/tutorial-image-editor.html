@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Doc Template</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        <img src="img/toast-ui.png" width="100%" height="100%">
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Doc Template</a></h1>
+        
+            <span class="version">v1.0.0</span>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    <ol class="lnb-tab">
+        <li id="api-tab">
+            <a href="#"><h4>API</h4></a>
+        </li>
+        <li id="examples-tab">
+            <a href="#"><h4>Examples</h4></a>
+        </li>
+    </ol>
+    <div class="lnb-examples hidden"><h3>Examples</h3><ul><li><a href="tutorial-chart.html">TUI Chart</a><div class="hidden" id="chart_sub"></div></li><li><a href="tutorial-editor.html">TUI Editor</a><div class="hidden" id="editor_sub"></div></li><li><a href="tutorial-grid.html">TUI Grid</a><div class="hidden" id="grid_sub"></div></li><li><a href="tutorial-image-editor.html">TUI Image Editor</a><div class="hidden" id="image-editor_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-bookshelf.html">bookshelf</a><div class="hidden" id="module:bookshelf_sub"></div></li><li><a href="module-color_mixer.html">color/mixer</a><div class="hidden" id="module:color/mixer_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-color_mixer.html#.blend">blend</a></li><li><a href="module-color_mixer.html#.darken">darken</a></li></ul></div></li><li><a href="module-myModule.html">myModule</a><div class="hidden" id="module:myModule_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="module-myModule.html#~foo">foo</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="module-myModule.html#~bar">bar</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><div class="hidden" id="external:_jQuery.fn__sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="external-_jQuery.fn_.html#.starfairy">starfairy</a></li></ul></div></li><li><a href="external-String.html">String</a><div class="hidden" id="external:String_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="external-String.html#rot13">rot13</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="FormButton.html">FormButton</a><div class="hidden" id="FormButton_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FormButton.html#fire">fire</a></li><li><a href="FormButton.html#on">on</a></li></ul></div></li><li><a href="module-bookshelf.Book.html">Book</a><div class="hidden" id="module:bookshelf.Book_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="module-bookshelf.Book.html#title">title</a></li></ul></div></li><li><a href="tui.component.Base.html">Base</a><div class="hidden" id="tui.component.Base_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="tui.component.Base.html#data">data</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.component.Base.html#getDatum">getDatum</a></li><li><a href="tui.component.Base.html#log">log</a></li><li><a href="tui.component.Base.html#log2">log2</a></li><li><a href="tui.component.Base.html#setDatum">setDatum</a></li></ul></div></li><li><a href="tui.component.BaseChild.html">BaseChild</a><div class="hidden" id="tui.component.BaseChild_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="tui.component.BaseChild.html#data">data</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.component.BaseChild.html#getDatum">getDatum</a></li><li><a href="tui.component.BaseChild.html#log">log</a></li><li><a href="tui.component.BaseChild.html#log2">log2</a></li><li><a href="tui.component.BaseChild.html#setDatum">setDatum</a></li><li><a href="tui.component.BaseChild.html#sum">sum</a></li></ul><div class="member-type">Events</div><ul class="inner"><li><a href="tui.component.BaseChild.html#event:foo">foo</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Namespaces</h3><ul><li><a href="MyNamespace.html">MyNamespace</a><div class="hidden" id="MyNamespace_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="MyNamespace.html#.bar">bar</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="MyNamespace.html#.foo">foo</a></li><li><a href="MyNamespace.html#.myFunction">myFunction</a></li></ul></div></li><li><a href="tui.html">tui</a><div class="hidden" id="tui_sub"></div></li><li><a href="tui.component.html">tui.component</a><div class="hidden" id="tui.component_sub"></div></li><li><a href="tui.util.html">tui.util</a><div class="hidden" id="tui.util_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.util.html#.trim">trim</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Mixins</h3><ul><li><a href="tui.Eventful.html">Eventful</a><div class="hidden" id="tui.Eventful_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="tui.Eventful.html#.fire">fire</a></li><li><a href="tui.Eventful.html#.on">on</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li class="hidden"><a href="global.html#Foo">Foo</a></li><li><a href="global.html#trstr">trstr</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+<section>
+    <header>
+        
+
+        <h2>TUI Image Editor</h2>
+    </header>
+
+    <ul id="example-nav" class="nav nav-tabs">
+        <li role="presentation" id="example-result-btn" class="active" onclick="showResult()">
+            <a href="#">Result</a>
+        </li>
+        <li role="presentation" id="example-js-btn" class="" onclick="showJs()">
+            <a href="#">JS</a>
+        </li>
+        <li role="presentation" id="example-html-btn" class="" onclick="showHtml()">
+            <a href="#">HTML</a>
+        </li>
+    </ul>
+
+    <article>
+        
+        <iframe id="example-result" width="100%" height="800" frameborder="0" src=tutorials/image-editor.html></iframe>
+        <div id="example-js" class="hidden"><pre class="prettyprint source">
+    /**
+     * basic.js
+     * @author NHN Ent. FE Development Team &lt;dl_javascript@nhnent.com>
+     * @fileoverview
+     */
+    /* eslint-disable vars-on-top */
+    'use strict';
+
+    var supportingFileAPI = !!(window.File &amp;&amp; window.FileList &amp;&amp; window.FileReader);
+    var rImageType = /data:(image\/.+);base64,/;
+    var mask;
+
+    // Functions
+    // HEX to RGBA
+    function hexToRGBa(hex, alpha) {
+        var r = parseInt(hex.slice(1, 3), 16);
+        var g = parseInt(hex.slice(3, 5), 16);
+        var b = parseInt(hex.slice(5, 7), 16);
+        var a = alpha || 1;
+
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+    }
+    function base64ToBlob(data) {
+        var mimeString = '';
+        var raw, uInt8Array, i, rawLength;
+
+        raw = data.replace(rImageType, function(header, imageType) {
+            mimeString = imageType;
+
+            return '';
+        });
+
+        raw = atob(raw);
+        rawLength = raw.length;
+        uInt8Array = new Uint8Array(rawLength); // eslint-disable-line
+
+        for (i = 0; i &lt; rawLength; i += 1) {
+            uInt8Array[i] = raw.charCodeAt(i);
+        }
+
+        return new Blob([uInt8Array], {type: mimeString});
+    }
+    function getBrushSettings() {
+        var brushWidth = $inputBrushWidthRange.val();
+        var brushColor = brushColorpicker.getColor();
+
+        return {
+            width: brushWidth,
+            color: hexToRGBa(brushColor, 0.5)
+        };
+    }
+
+    // Buttons
+    var $btns = $('.menu-item');
+    var $btnsActivatable = $btns.filter('.activatable');
+    var $inputImage = $('#input-image-file');
+    var $btnDownload = $('#btn-download');
+
+    var $btnUndo = $('#btn-undo');
+    var $btnRedo = $('#btn-redo');
+    var $btnClearObjects = $('#btn-clear-objects');
+    var $btnRemoveActiveObject = $('#btn-remove-active-object');
+    var $btnCrop = $('#btn-crop');
+    var $btnFlip = $('#btn-flip');
+    var $btnRotation = $('#btn-rotation');
+    var $btnDrawLine = $('#btn-draw-line');
+    var $btnApplyCrop = $('#btn-apply-crop');
+    var $btnCancelCrop = $('#btn-cancel-crop');
+    var $btnFlipX = $('#btn-flip-x');
+    var $btnFlipY = $('#btn-flip-y');
+    var $btnResetFlip = $('#btn-reset-flip');
+    var $btnRotateClockwise = $('#btn-rotate-clockwise');
+    var $btnRotateCounterClockWise = $('#btn-rotate-counter-clockwise');
+    var $btnText = $('#btn-text');
+    var $btnClosePalette = $('#btn-close-palette');
+    var $btnTextStyle = $('.btn-text-style');
+    var $btnAddIcon = $('#btn-add-icon');
+    var $btnRegisterIcon = $('#btn-register-icon');
+    var $btnMaskFilter = $('#btn-mask-filter');
+    var $btnLoadMaskImage = $('#input-mask-image-file');
+    var $btnApplyMask = $('#btn-apply-mask');
+    var $btnClose = $('.close');
+
+    // Range Input
+    var $inputRotationRange = $('#input-rotation-range');
+    var $inputBrushWidthRange = $('#input-brush-width-range');
+    var $inputFontSizeRange = $('#input-font-size-range');
+
+    // Sub menus
+    var $displayingSubMenu = $();
+    var $cropSubMenu = $('#crop-sub-menu');
+    var $flipSubMenu = $('#flip-sub-menu');
+    var $rotationSubMenu = $('#rotation-sub-menu');
+    var $freeDrawingSubMenu = $('#free-drawing-sub-menu');
+    var $drawLineSubMenu = $('#draw-line-sub-menu');
+    var $textSubMenu = $('#text-sub-menu');
+    var $iconSubMenu = $('#icon-sub-menu');
+    var $filterSubMenu = $('#filter-sub-menu');
+
+    // Select line type
+    var $selectMode = $('[name="select-line-type"]');
+
+    // Text palette
+    var $textPalette = $('#tui-text-palette');
+
+    // Image editor
+    var imageEditor = new tui.component.ImageEditor('.tui-image-editor canvas', {
+        cssMaxWidth: 700,
+        cssMaxHeight: 500
+    });
+
+    // Color picker for free drawing
+    var brushColorpicker = tui.component.colorpicker.create({
+        container: $('#tui-brush-color-picker')[0],
+        color: '#000000'
+    });
+
+    // Color picker for text palette
+    var textPaletteColorpicker = tui.component.colorpicker.create({
+        container: $('#tui-text-color-picker')[0],
+        color: '#000000'
+    });
+
+    // Color picker for icon
+    var iconColorpicker = tui.component.colorpicker.create({
+        container: $('#tui-icon-color-picker')[0],
+        color: '#000000'
+    });
+
+    brushColorpicker.on('selectColor', function(event) {
+        imageEditor.setBrush({
+            color: hexToRGBa(event.color, 0.5)
+        });
+    });
+
+    // Attach image editor custom events
+    imageEditor.once('loadImage', function() {
+        imageEditor.clearUndoStack();
+    });
+
+    var resizeEditor = function() {
+        var $editor = $('.tui-image-editor');
+        var $container = $('.tui-image-editor-canvas-container');
+        var height = parseFloat($container.css('max-height'));
+
+        $editor.height(height);
+    };
+
+    imageEditor.on({
+        endCropping: function() {
+            $cropSubMenu.hide();
+            resizeEditor();
+        },
+        endFreeDrawing: function() {
+            $freeDrawingSubMenu.hide();
+        },
+        emptyUndoStack: function() {
+            $btnUndo.addClass('disabled');
+            resizeEditor();
+        },
+        emptyRedoStack: function() {
+            $btnRedo.addClass('disabled');
+            resizeEditor();
+        },
+        pushUndoStack: function() {
+            $btnUndo.removeClass('disabled');
+            resizeEditor();
+        },
+        pushRedoStack: function() {
+            $btnRedo.removeClass('disabled');
+            resizeEditor();
+        },
+        activateText: function(obj) {
+            $displayingSubMenu.hide();
+            $displayingSubMenu = $textSubMenu.show();
+
+            if (obj.type === 'new') { // add new text on cavas
+                imageEditor.addText('Double Click', {
+                    position: obj.originPosition
+                });
+            }
+        },
+        adjustObject: function(obj, type) {
+            if (obj.type === 'text' &amp;&amp; type === 'scale') {
+                $inputFontSizeRange.val(obj.getFontSize());
+            }
+        },
+        removeObject: function(obj) {
+            console.log(obj);
+        }
+    });
+
+    // Attach button click event listeners
+    $btns.on('click', function() {
+        $btnsActivatable.removeClass('active');
+    });
+
+    $btnsActivatable.on('click', function() {
+        $(this).addClass('active');
+    });
+
+    $btnUndo.on('click', function() {
+        $displayingSubMenu.hide();
+        imageEditor.undo();
+    });
+
+    $btnRedo.on('click', function() {
+        $displayingSubMenu.hide();
+        imageEditor.redo();
+    });
+
+    $btnClearObjects.on('click', function() {
+        $displayingSubMenu.hide();
+        imageEditor.clearObjects();
+    });
+
+    $btnRemoveActiveObject.on('click', function() {
+        $displayingSubMenu.hide();
+        imageEditor.removeActiveObject();
+    });
+
+    $btnCrop.on('click', function() {
+        imageEditor.startCropping();
+        $displayingSubMenu.hide();
+        $displayingSubMenu = $cropSubMenu.show();
+    });
+
+    $btnFlip.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+        $displayingSubMenu = $flipSubMenu.show();
+    });
+
+    $btnRotation.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+        $displayingSubMenu = $rotationSubMenu.show();
+    });
+
+    $btnClose.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+    });
+
+    $btnApplyCrop.on('click', function() {
+        imageEditor.endCropping(true);
+    });
+
+    $btnCancelCrop.on('click', function() {
+        imageEditor.endCropping();
+        $displayingSubMenu.hide();
+    });
+
+    $btnFlipX.on('click', function() {
+        imageEditor.flipX();
+    });
+
+    $btnFlipY.on('click', function() {
+        imageEditor.flipY();
+    });
+
+    $btnResetFlip.on('click', function() {
+        imageEditor.resetFlip();
+    });
+
+    $btnRotateClockwise.on('click', function() {
+        imageEditor.rotate(30);
+    });
+
+    $btnRotateCounterClockWise.on('click', function() {
+        imageEditor.rotate(-30);
+    });
+
+    $inputRotationRange.on('mousedown', function() {
+        var changeAngle = function() {
+            imageEditor.setAngle(parseInt($inputRotationRange.val(), 10));
+        };
+        $(document).on('mousemove', changeAngle);
+        $(document).on('mouseup', function stopChangingAngle() {
+            $(document).off('mousemove', changeAngle);
+            $(document).off('mouseup', stopChangingAngle);
+        });
+    });
+
+    $inputBrushWidthRange.on('change', function() {
+        imageEditor.setBrush({width: parseInt(this.value, 10)});
+    });
+
+    $inputImage.on('change', function(event) {
+        var file;
+
+        if (!supportingFileAPI) {
+            alert('This browser does not support file-api');
+        }
+
+        file = event.target.files[0];
+        imageEditor.loadImageFromFile(file);
+    });
+
+    $btnDownload.on('click', function() {
+        var imageName = imageEditor.getImageName();
+        var dataURL = imageEditor.toDataURL();
+        var blob, type, w;
+
+        if (supportingFileAPI) {
+            blob = base64ToBlob(dataURL);
+            type = blob.type.split('/')[1];
+            if (imageName.split('.').pop() !== type) {
+                imageName += '.' + type;
+            }
+
+            // Library: FileSaver - saveAs
+            saveAs(blob, imageName); // eslint-disable-line
+        } else {
+            alert('This browser needs a file-server');
+            w = window.open();
+            w.document.body.innerHTML = '&lt;img src=' + dataURL + '>';
+        }
+    });
+
+    // control draw mode
+    $btnDrawLine.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+        $displayingSubMenu = $drawLineSubMenu.show();
+        $selectMode.removeAttr('checked');
+    });
+
+    $selectMode.on('change', function() {
+        var mode = $(this).val();
+        var settings = getBrushSettings();
+        var state = imageEditor.getCurrentState();
+
+        if (mode === 'freeDrawing') {
+            if (state === 'FREE_DRAWING') {
+                imageEditor.endFreeDrawing();
+            }
+            imageEditor.startFreeDrawing(settings);
+        } else {
+            if (state === 'LINE') {
+                imageEditor.endLineDrawing();
+            }
+            imageEditor.startLineDrawing(settings);
+        }
+    });
+
+    // control text mode
+    $btnText.on('click', function() {
+        if (imageEditor.getCurrentState() === 'TEXT') {
+            $(this).removeClass('active');
+            imageEditor.endTextMode();
+        } else {
+            $displayingSubMenu.hide();
+            $displayingSubMenu = $textSubMenu.show();
+            imageEditor.startTextMode();
+            $textPalette.hide();
+        }
+    });
+
+    $inputFontSizeRange.on('change', function() {
+        imageEditor.changeTextStyle({
+            fontSize: parseInt(this.value, 10)
+        });
+    });
+
+    $btnTextStyle.on('click', function(e) { // eslint-disable-line
+        var styleType = $(this).attr('data-style-type');
+        var styleObj;
+
+        e.stopPropagation();
+
+        switch (styleType) {
+            case 'b':
+                styleObj = {fontWeight: 'bold'};
+                break;
+            case 'i':
+                styleObj = {fontStyle: 'italic'};
+                break;
+            case 'u':
+                styleObj = {textDecoration: 'underline'};
+                break;
+            case 'l':
+                styleObj = {textAlign: 'left'};
+                break;
+            case 'c':
+                styleObj = {textAlign: 'center'};
+                break;
+            case 'r':
+                styleObj = {textAlign: 'right'};
+                break;
+            default:
+                styleObj = {};
+        }
+
+        imageEditor.changeTextStyle(styleObj);
+    });
+
+    textPaletteColorpicker.on('selectColor', function(event) {
+        imageEditor.changeTextStyle({
+            'fill': event.color
+        });
+    });
+
+    $btnClosePalette.on('click', function() {
+        imageEditor.deactivateAll();
+        $textPalette.hide();
+    });
+
+    // control icon
+    $btnAddIcon.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+        $displayingSubMenu = $iconSubMenu.show();
+    });
+
+    $btnRegisterIcon.on('click', function() {
+        $iconSubMenu.find('.menu').append(
+                '&lt;li class="menu-item icon-text" data-icon-type="customArrow">↑&lt;/li>'
+        );
+
+        imageEditor.registerIcons({
+            customArrow: 'M 60 0 L 120 60 H 90 L 75 45 V 180 H 45 V 45 L 30 60 H 0 Z'
+        });
+
+        $btnRegisterIcon.off('click');
+    });
+
+    $iconSubMenu.on('click', '.menu-item', function() {
+        var iconType = $(this).attr('data-icon-type');
+
+        imageEditor.addIcon(iconType);
+    });
+
+    iconColorpicker.on('selectColor', function(event) {
+        imageEditor.changeIconColor(event.color);
+    });
+
+    // control mask filter
+    $btnMaskFilter.on('click', function() {
+        imageEditor.endAll();
+        $displayingSubMenu.hide();
+
+
+        $displayingSubMenu = $filterSubMenu.show();
+    });
+
+    $btnLoadMaskImage.on('change', function() {
+        var file;
+        var imgUrl;
+
+        if (!supportingFileAPI) {
+            alert('This browser does not support file-api');
+        }
+
+        file = event.target.files[0];
+
+        if (file) {
+            imgUrl = URL.createObjectURL(file);
+
+            imageEditor.loadImageFromURL(imageEditor.toDataURL(), 'FilterImage');
+
+            imageEditor.addImageObject(imgUrl);
+        }
+    });
+
+    $btnApplyMask.on('click', function() {
+        imageEditor.applyFilter('mask');
+    });
+
+    // Etc..
+
+    // Load sample image
+    imageEditor.loadImageFromURL('https://cdn.rawgit.com/nhnent/tui.component.image-editor/1.3.0/samples/img/sampleImage.jpg', 'SampleImage');
+
+    // IE9 Unselectable
+    $('.menu').on('selectstart', function() {
+        return false;
+    });
+</pre></div>
+        <div id="example-html" class="hidden"><pre class="prettyprint source">
+    &lt;div class="body-container">
+        &lt;div class="tui-image-editor-controls">
+            &lt;div class="header">
+                &lt;img class="logo" src="https://cdn.rawgit.com/nhnent/tui.component.image-editor/1.3.0/samples/img/TOAST UI Component.png">
+                &lt;span class="name"> Image Editor&lt;/span>
+                &lt;ul class="menu">
+                    &lt;li class="menu-item border input-wrapper">
+                        Load
+                        &lt;input type="file" accept="image/*" id="input-image-file">
+                    &lt;/li>
+                    &lt;li class="menu-item border" id="btn-download">Download&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;ul class="menu">
+                &lt;li class="menu-item disabled" id="btn-undo">Undo&lt;/li>
+                &lt;li class="menu-item disabled" id="btn-redo">Redo&lt;/li>
+                &lt;li class="menu-item" id="btn-clear-objects">ClearObjects&lt;/li>
+                &lt;li class="menu-item" id="btn-remove-active-object">RemoveActiveObject&lt;/li>
+                &lt;li class="menu-item" id="btn-crop">Crop&lt;/li>
+                &lt;li class="menu-item" id="btn-flip">Flip&lt;/li>
+                &lt;li class="menu-item" id="btn-rotation">Rotation&lt;/li>
+                &lt;li class="menu-item" id="btn-draw-line">DrawLine&lt;/li>
+                &lt;li class="menu-item" id="btn-add-icon">Icon&lt;/li>
+                &lt;li class="menu-item" id="btn-text">Text&lt;/li>
+                &lt;li class="menu-item" id="btn-mask-filter">Mask&lt;/li>
+            &lt;/ul>
+
+            &lt;div class="sub-menu-container" id="crop-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item" id="btn-apply-crop">Apply&lt;/li>
+                    &lt;li class="menu-item" id="btn-cancel-crop">Cancel&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container" id="flip-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item" id="btn-flip-x">FlipX&lt;/li>
+                    &lt;li class="menu-item" id="btn-flip-y">FlipY&lt;/li>
+                    &lt;li class="menu-item" id="btn-reset-flip">Reset&lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container" id="rotation-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item" id="btn-rotate-clockwise">Clockwise(30)&lt;/li>
+                    &lt;li class="menu-item" id="btn-rotate-counter-clockwise">Counter-Clockwise(-30)&lt;/li>
+                    &lt;li class="menu-item no-pointer">&lt;label>Range input&lt;input id="input-rotation-range" type="range" min="-360" value="0" max="360">&lt;/label>&lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container menu" id="draw-line-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item">
+                        &lt;label>&lt;input type="radio" class="select-line-type" name="select-line-type" value="freeDrawing"> Free drawing&lt;/label>
+                    &lt;/li>
+                    &lt;li class="menu-item">
+                        &lt;label>&lt;input type="radio" class="select-line-type" name="select-line-type" value="lineDrawing"> Straight line&lt;/label>
+                    &lt;/li>
+                    &lt;li class="menu-item">
+                        &lt;div id="tui-brush-color-picker">Brush color&lt;/div>
+                    &lt;/li>
+                    &lt;li class="menu-item">&lt;label class="menu-item no-pointer">Brush width&lt;input id="input-brush-width-range" type="range" min="5" max="30" value="12">&lt;/label>&lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container" id="icon-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item">
+                        &lt;div id="tui-icon-color-picker">Icon color&lt;/div>
+                    &lt;/li>
+                    &lt;li class="menu-item border" id="btn-register-icon">Register custom icon&lt;/li>
+                    &lt;li class="menu-item icon-text" data-icon-type="arrow">➡&lt;/li>
+                    &lt;li class="menu-item icon-text" data-icon-type="cancel">✖&lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container" id="text-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item">
+                        &lt;div>
+                            &lt;button class="btn-text-style" data-style-type="b">Bold&lt;/button>
+                            &lt;button class="btn-text-style" data-style-type="i">Italic&lt;/button>
+                            &lt;button class="btn-text-style" data-style-type="u">Underline&lt;/button>
+                        &lt;/div>
+                        &lt;div>
+                            &lt;button class="btn-text-style" data-style-type="l">Left&lt;/button>
+                            &lt;button class="btn-text-style" data-style-type="c">Center&lt;/button>
+                            &lt;button class="btn-text-style" data-style-type="r">Right&lt;/button>
+                        &lt;/div>
+                    &lt;/li>
+                    &lt;li class="menu-item">&lt;label class="no-pointer">&lt;input id="input-font-size-range" type="range" min="10" max="100" value="10">&lt;/label>&lt;/li>
+                    &lt;li class="menu-item">
+                        &lt;div id="tui-text-color-picker">Text color&lt;/div>
+                    &lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+            &lt;div class="sub-menu-container" id="filter-sub-menu">
+                &lt;ul class="menu">
+                    &lt;li class="menu-item border input-wrapper">
+                        Load Mask Image
+                        &lt;input type="file" accept="image/*" id="input-mask-image-file">
+                    &lt;/li>
+                    &lt;li class="menu-item" id="btn-apply-mask">Apply mask filter&lt;/li>
+                    &lt;li class="menu-item close">Close&lt;/li>
+                &lt;/ul>
+            &lt;/div>
+        &lt;/div>
+        &lt;div class="tui-image-editor">
+            &lt;canvas>&lt;/canvas>
+        &lt;/div>
+    &lt;/div>
+</pre></div>
+    </article>
+</section>
+
+<script>
+    var exampleResult = document.getElementById('example-result');
+    var exampleJs = document.getElementById('example-js');
+    var exampleHtml = document.getElementById('example-html');
+    var exampleResultBtn = document.getElementById('example-result-btn');
+    var exampleJsBtn = document.getElementById('example-js-btn');
+    var exampleHtmlBtn = document.getElementById('example-html-btn');
+
+    function setActive(el) {
+        el.className += ' active';
+    }
+
+    function setInactive(el) {
+        el.className = el.className.replace(/\s*active\s*/g, '');
+    }
+
+    function show(el) {
+        el.className = el.className.replace(/\s*hidden\s*/g, '');
+    }
+
+    function hide(el) {
+        el.className += ' hidden';
+    }
+
+    function showJs() {
+        hide(exampleHtml);
+        hide(exampleResult);
+        setInactive(exampleHtmlBtn);
+        setInactive(exampleResultBtn);
+
+        show(exampleJs);
+        setActive(exampleJsBtn);
+    }
+
+    function showHtml() {
+        hide(exampleJs);
+        hide(exampleResult);
+        setInactive(exampleJsBtn);
+        setInactive(exampleResultBtn);
+
+        show(exampleHtml);
+        setActive(exampleHtmlBtn);
+    }
+
+    function showResult() {
+        hide(exampleJs);
+        hide(exampleHtml);
+        setInactive(exampleJsBtn);
+        setInactive(exampleHtmlBtn);
+
+        show(exampleResult);
+        setActive(exampleResultBtn);
+    }
+</script>
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment Frontend Development Lab</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        showLnbExamples();
+    </script>
+
+</body>
+</html>
