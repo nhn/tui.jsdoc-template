@@ -1,0 +1,105 @@
+<?js
+var templates = env.conf.templates;
+var logo = '';
+var footerText = '';
+var logoUrl = 'img/toast-ui.png';
+var width, height;
+var style = '';
+var name = '';
+var version = '';
+
+if (templates) {
+    logo = templates.logo;
+    footerText = templates.footerText;
+    name = templates.name || package.name || title;
+}
+
+if (logo) {
+    logoUrl = logo.url || logoUrl;
+    width = logo.width;
+    height = logo.height;
+}
+
+if (width) {
+    style += 'width: ' + width;
+}
+
+if (height) {
+    style += '; height: ' + height;
+}
+
+if (package) {
+    version = package.version;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><?js= name ?></title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="<?js= style ?>">
+        <img src="<?js= logoUrl?>" width="100%" height="100%">
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link"><?js= name ?></a></h1>
+        <?js if (version) { ?>
+            <span class="version">v<?js= version ?></span>
+        <?js } ?>
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    <ol class="lnb-tab">
+        <li id="api-tab">
+            <a href="#"><h4>API</h4></a>
+        </li>
+        <li id="examples-tab">
+            <a href="#"><h4>Examples</h4></a>
+        </li>
+    </ol>
+    <?js= this.nav ?>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    <?js= content ?>
+</div>
+
+<footer>
+    <img class="logo" src="<?js= logoUrl?>" style="<?js= style ?>">
+    <div class="footer-text"><?js= footerText || 'NHN Entertainment. Frontend Development Lab' ?></div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+<?js if (!isTutorial) { ?>
+    <script>
+        var id = '<?js= docs[0].longname ?>_sub'.replace(/"/g, '_');
+        var element = document.getElementById(id); // do not use jquery selector
+
+        $(element).removeClass('hidden');
+        showLnbApi();
+    </script>
+<?js } else { ?>
+    <script>
+        showLnbExamples();
+    </script>
+<?js } ?>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "tui-jsdoc-template",
+  "version": "1.0.0",
+  "description": "Toast UI JSDoc Template",
+  "main": "publish.js",
+  "scripts": {
+    "serve": "gulp serve"
+  },
+  "authors": [
+    "NHNEnt FE Development Lab <dl_javascript@nhnent.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nhnent/tui.jsdoc-template"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-jsdoc3": "^1.0.1"
+  }
+}

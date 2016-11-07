@@ -1,0 +1,17 @@
+{
+  "plugins": ["plugins/markdown"],
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "templates": {
+    "name": "Doc Template",
+    "footerText": "NHN Entertainment Frontend Development Lab"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "recurse": true,
+    "package": "package.json",
+    "tutorials": "demo/samples"
+  }
+}

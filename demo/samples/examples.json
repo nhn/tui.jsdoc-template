@@ -1,0 +1,14 @@
+{
+  "image-editor": {
+    "title": "TUI Image Editor"
+  },
+  "chart": {
+    "title": "TUI Chart"
+  },
+  "grid": {
+    "title": "TUI Grid"
+  },
+  "editor": {
+    "title": "TUI Editor"
+  }
+}
