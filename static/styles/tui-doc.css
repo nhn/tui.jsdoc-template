@@ -43,6 +43,13 @@ ul, ol, li {list-style:none; padding-left:0; margin-left:0;}
     padding-bottom: 5px;
     border-bottom: 1px solid #1f292e;
 }
+.lnb .lnb-api h3 a {
+    color: #fa3282;
+}
+.lnb .lnb-api h3 a:hover {
+    color: #fa3282;
+    text-decoration: underline;
+}
 .lnb .lnb-api a,
 .lnb .lnb-examples a {
     color: #7cafc2;
