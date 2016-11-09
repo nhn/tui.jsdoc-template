@@ -415,6 +415,7 @@ function buildNav(members) {
 
     if (members.globals.length) {
         var globalNav = '';
+        var useGlobalTitleLink = true;
 
         members.globals.forEach(function(g) {
             if ( !hasOwnProp.call(seen, g.longname) ) {
@@ -425,13 +426,14 @@ function buildNav(members) {
                     globalNav += '<li class="hidden">' + linkto(g.longname, g.name) + '</li>';
                 } else {
                     globalNav += '<li>' + linkto(g.longname, g.name) + '</li>';
+                    useGlobalTitleLink = false;
                 }
             }
 
             seen[g.longname] = true;
         });
 
-        if (!globalNav) {
+        if (!useGlobalTitleLink) {
             // turn the heading into a link so you can actually get to the global page
             nav += '<div class="lnb-api hidden"><h3>' + linkto('global', 'Global') + '</h3></div>';
         }
