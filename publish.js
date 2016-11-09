@@ -433,7 +433,7 @@ function buildNav(members) {
             seen[g.longname] = true;
         });
 
-        if (!useGlobalTitleLink) {
+        if (useGlobalTitleLink) {
             // turn the heading into a link so you can actually get to the global page
             nav += '<div class="lnb-api hidden"><h3>' + linkto('global', 'Global') + '</h3></div>';
         }
