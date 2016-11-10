@@ -22,6 +22,13 @@ TUI JSDoc template has following features.
 ## Configuration
 ([*jsdoc page - configuration*](http://usejsdoc.org/about-configuring-jsdoc.html#incorporating-command-line-options-into-the-configuration-file))
 
+### Template
+```
+"opts": {
+    "template": "node_modules/tui-jsdoc-template"
+}
+```
+
 ### Logo Image
 ```
 "templates": {
