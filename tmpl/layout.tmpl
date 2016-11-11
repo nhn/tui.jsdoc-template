@@ -1,5 +1,6 @@
 <?js
 var templates = env.conf.templates;
+var examples = env.conf.opts.tutorials;
 var logo = '';
 var footerText = '';
 var logoUrl = 'img/toast-ui.png';
@@ -64,14 +65,16 @@ if (package) {
         <input type="text" placeholder="Search">
         <ul></ul>
     </div>
-    <ol class="lnb-tab">
-        <li id="api-tab">
-            <a href="#"><h4>API</h4></a>
-        </li>
-        <li id="examples-tab">
-            <a href="#"><h4>Examples</h4></a>
-        </li>
-    </ol>
+    <?js if (examples) { ?>
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>API</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Examples</h4></a>
+            </li>
+        </ol>
+    <?js } ?>
     <?js= this.nav ?>
 </nav>
 <div id="resizer"></div>
