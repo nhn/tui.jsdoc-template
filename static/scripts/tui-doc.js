@@ -184,4 +184,20 @@ function removeWhiteSpace(value) {
     return value.replace(/\s/g, '');
 }
 
+/*************** TOOGLE SUB NAV ***************/
+$(function() {
 
+    function toggleSubNav(e) {
+        e.preventDefault();
+        $(e.target).blur().next().toggle();
+    }
+
+    $lnb.find('.lnb-api').each(function() {
+        $(this).find('> ul > li > a').filter(function() {
+            return $(this).next('.hidden').length === 0;
+        }).each(function() {
+            $(this).on('click', toggleSubNav);
+        });
+    });
+
+});
