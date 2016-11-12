@@ -484,7 +484,11 @@ function getVersions () {
         return fs.statSync(path.join(srcpath, file)).isDirectory();
     });
 }
-    return getDirectories(topLevelOutDir);
+    if (env.conf.templates.versionSwitcher) {
+        return getDirectories(topLevelOutDir);
+    }
+    return [];
+
 }
 
 /**

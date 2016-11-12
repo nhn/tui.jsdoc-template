@@ -59,10 +59,10 @@ if (package) {
     </div>
     <div class="title">
         <h1><a href="index.html" class="link"><?js= name ?></a></h1>
-        <?js if (version && !versionSwitcher) { ?>
+        <?js if ((version && this.versions.length < 2)) { ?>
             <p class="version">v<?js= version ?></p>
         <?js } ?>
-        <?js if (version && versionSwitcher) { ?>
+        <?js if (version && versionSwitcher && this.versions.length > 1) { ?>
             <form class="form-inline version-switcher">
                 <div class="form-group">
                     <label for="selectVersion">Version:</label>
