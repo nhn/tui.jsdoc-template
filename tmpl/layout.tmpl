@@ -67,7 +67,17 @@ if (package) {
                 <div class="form-group">
                     <label for="selectVersion">Version:</label>
                     <select id="selectVersion" class="form-control">
-                      <option value="<?js= version ?>">v<?js= version ?></option>
+                    <?js
+                        this.versions.forEach(function(versionDir) {
+                            var selected = '';
+                            if (versionDir === version) {
+                                selected = 'selected';
+                            }
+                    ?>
+                        <option value="<?js= versionDir ?>" <?js= selected ?>>
+                            v<?js= versionDir ?>
+                        </option>
+                    <?js }) ?>
                     </select>
                 </div>
             </form>

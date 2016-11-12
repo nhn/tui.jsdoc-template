@@ -476,6 +476,17 @@ var copyRecursiveSync = function(src, dest) {
     }
 };
 
+function getVersions () {
+    var topLevelOutDir = path.normalize(env.opts.destination);
+
+    function getDirectories(srcpath) {
+    return fs.readdirSync(srcpath).filter(function (file) {
+        return fs.statSync(path.join(srcpath, file)).isDirectory();
+    });
+}
+    return getDirectories(topLevelOutDir);
+}
+
 /**
     @param {TAFFY} taffyData See <http://taffydb.com/>.
     @param {object} opts
@@ -661,6 +672,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.tutoriallink = tutoriallink;
     view.htmlsafe = htmlsafe;
     view.outputSourceFiles = outputSourceFiles;
+    view.versions = getVersions();
 
     // once for all
     view.nav = buildNav(members);
