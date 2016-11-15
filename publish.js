@@ -365,6 +365,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 }
                 itemsNav += '<li>'
                     + linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''))
+                    + ' <button type="button" class="hidden toggleSubnav btn btn-link">'
+                    + '     <span class="glyphicon glyphicon-plus"></span>'
+                    + '</button>'
                     + buildSubNav(item)
                     + '</li>';
             }
