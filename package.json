@@ -22,7 +22,9 @@
     "tui"
   ],
   "dependencies": {
-    "cheerio": "^0.22.0"
+    "bluebird": "^3.4.6",
+    "cheerio": "^0.22.0",
+    "git-semver-tags": "^1.1.2"
   },
   "devDependencies": {
     "del": "^2.2.2",
