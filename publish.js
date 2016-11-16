@@ -598,6 +598,17 @@ exports.publish = function(taffyData, opts, tutorials) {
         });
     }
 
+    // Handle redirect to current version:
+    // Copy versionSwitcher/index.html one level above the outdir for
+    // redirecting to the current version in case of version switcher
+    // and create versionSwitcher.js file.
+    if (packageInfo && packageInfo.version && conf.versionSwitcher) {
+        var rootDir = path.normalize(env.opts.destination);
+        var fromDir = path.join(templatePath, 'versionSwitcher');
+        fs.copyFileSync(fromDir + '/index.html', rootDir);
+        fs.writeFileSync(rootDir + '/versionSwitcher.js', 'var versionSwitcher = \'' + packageInfo.version + '\';');
+    }
+
     if (sourceFilePaths.length) {
         sourceFiles = shortenPaths( sourceFiles, path.commonPrefix(sourceFilePaths) );
     }
