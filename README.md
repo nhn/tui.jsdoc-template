@@ -64,7 +64,8 @@ See [*JSDoc page - configuration*](http://usejsdoc.org/about-configuring-jsdoc.h
 }
 ```
 **Please note:**
- The version switcher gets the version for the via Git tags. But JSDoc only generates the current sources. 
+ * The version switcher gets the versions via Git tags. But JSDoc only generates the current sources. So keep in mind that you have to generate the docs for each tag. Otherwise switching versions will lead to 404 errors.
+ * You have to provide the current version via `opts.package`. See example configuration below.
 
 ### Example configuration
 
