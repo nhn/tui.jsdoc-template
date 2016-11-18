@@ -7,14 +7,14 @@ body {
     color: #fff;
     font-size: 13px;
     background-color: #00beaa;
-    padding: 8px 17px;
+    padding: 7px 17px;
 }
 .version-switcher label {
     font-weight: normal;
 }
 .version-switcher .form-control {
     min-width: 80px;
-    height: 25px;
+    height: 27px;
     font-size: 13px;
 }
 
