@@ -25,7 +25,9 @@
     "cheerio": "^0.22.0"
   },
   "devDependencies": {
+    "bluebird": "^3.4.6",
     "del": "^2.2.2",
+    "git-semver-tags": "^1.1.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-jsdoc3": "^1.0.1"

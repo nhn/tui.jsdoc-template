@@ -1,0 +1,27 @@
+body {
+    overflow: hidden;
+}
+
+.version-switcher {
+    height: 40px;
+    color: #fff;
+    font-size: 13px;
+    background-color: #00beaa;
+    padding: 8px 17px;
+}
+.version-switcher label {
+    font-weight: normal;
+}
+.version-switcher .form-control {
+    min-width: 80px;
+    height: 25px;
+    font-size: 13px;
+}
+
+#docs {
+    height: 90%; /* Fallback for browser which doesnt support calc() */
+    height: calc(100% - 40px);
+    border: none;
+    width: 100%;
+    position: absolute;
+}
