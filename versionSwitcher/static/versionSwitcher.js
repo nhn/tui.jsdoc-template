@@ -3,6 +3,8 @@ $(function () {
     var $versionSwitcher = $('#selectVersion');
     var options = [];
 
+    $('title').html(data.pageTitle);
+
     $.each(data.versions, function(index, version) {
         // Get rid of semver version prefixes
         version = version.replace('v', '');

@@ -37,7 +37,7 @@ module.exports = function (outputDir, currentVersion, pageTitle) {
     fs.copyFileSync(path.normalize(staticVersionSwitcherDir + '/versionSwitcher.css'), versionSwitcherOutputDir);
     fs.copyFileSync(path.normalize(staticVersionSwitcherDir + '/versionSwitcher.js'), versionSwitcherOutputDir);
 
-    // Git versions from Git tags and generate {outputDir}/versionSwitcher/data.js
+    // Get versions from Git tags and generate {outputDir}/versionSwitcher/data.js
     gitSemverTags().then(function(versions){
         versionSwitcherData.versions = versions;
         fs.writeFileSync(path.normalize(versionSwitcherOutputDir + '/data.js'), 'var data = ' + JSON.stringify(versionSwitcherData) + ';');
