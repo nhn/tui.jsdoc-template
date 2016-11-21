@@ -203,5 +203,11 @@ $(function() {
             }
         });
     });
+});
 
+/*************** VERSION SWITCHER ***************/
+$(function() {
+    $('#selectVersion').on('change', function(e) {
+        document.location.pathname = '/' + e.target.value + '/';
+    });
 });

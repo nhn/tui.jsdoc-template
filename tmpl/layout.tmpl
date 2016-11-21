@@ -8,11 +8,13 @@ var width, height;
 var style = '';
 var name = '';
 var version = '';
+var versionSwitcher = false;
 
 if (templates) {
     logo = templates.logo;
     footerText = templates.footerText;
     name = templates.name || package.name || title;
+    versionSwitcher = templates.versionSwitcher || versionSwitcher;
 }
 
 if (logo) {
@@ -57,8 +59,28 @@ if (package) {
     </div>
     <div class="title">
         <h1><a href="index.html" class="link"><?js= name ?></a></h1>
-        <?js if (version) { ?>
-            <span class="version">v<?js= version ?></span>
+        <?js if (version && !versionSwitcher) { ?>
+            <p class="version">v<?js= version ?></p>
+        <?js } ?>
+        <?js if (version && versionSwitcher) { ?>
+            <form class="form-inline version-switcher">
+                <div class="form-group">
+                    <label for="selectVersion">Version:</label>
+                    <select id="selectVersion" class="form-control">
+                    <?js
+                        this.versions.forEach(function(versionDir) {
+                            var selected = '';
+                            if (versionDir === version) {
+                                selected = 'selected';
+                            }
+                    ?>
+                        <option value="<?js= versionDir ?>" <?js= selected ?>>
+                            v<?js= versionDir ?>
+                        </option>
+                    <?js }) ?>
+                    </select>
+                </div>
+            </form>
         <?js } ?>
     </div>
     <div class="search-container" id="search-container">

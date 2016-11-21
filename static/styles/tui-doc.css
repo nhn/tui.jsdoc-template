@@ -90,9 +90,19 @@ ul, ol, li {list-style:none; padding-left:0; margin-left:0;}
     color: #eee;
 }
 
-.lnb .version {
+.lnb .version,
+.lnb .version-switcher {
     color: #aaa;
     font-size: 1.2em;
+}
+
+.lnb .version-switcher label {
+    font-weight: normal;
+}
+
+.lnb .version-switcher .form-control {
+    min-width: 80px;
+    height: 25px;
 }
 
 /* LNB-TAB */

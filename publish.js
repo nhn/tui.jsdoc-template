@@ -10,6 +10,8 @@ var taffy = require('taffydb').taffy;
 var template = require('jsdoc/template');
 var util = require('util');
 var cheerio = require('cheerio'); // for parse html to dom
+var Promise = require('bluebird');
+var gitSemverTags = Promise.promisify(require('git-semver-tags'));
 
 var htmlsafe = helper.htmlsafe;
 var linkto = helper.linkto;
@@ -551,6 +553,11 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
+	// update outdir if necessary, then create outdir
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    if (packageInfo && packageInfo.version && conf.versionSwitcher) {
+        outdir = path.join( outdir, (packageInfo.version) );
+    }
     fs.mkPath(outdir);
 
     // copy the template's static files to outdir
@@ -589,6 +596,17 @@ exports.publish = function(taffyData, opts, tutorials) {
                 fs.copyFileSync(fileName, toDir);
             });
         });
+    }
+
+    // Handle redirect to current version:
+    // Copy versionSwitcher/index.html one level above the outdir for
+    // redirecting to the current version in case of version switcher
+    // and create versionSwitcher.js file.
+    if (packageInfo && packageInfo.version && conf.versionSwitcher) {
+        var rootDir = path.normalize(env.opts.destination);
+        var fromDir = path.join(templatePath, 'versionSwitcher');
+        fs.copyFileSync(fromDir + '/index.html', rootDir);
+        fs.writeFileSync(rootDir + '/versionSwitcher.js', 'var versionSwitcher = \'' + packageInfo.version + '\';');
     }
 
     if (sourceFilePaths.length) {
@@ -662,98 +680,105 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     attachModuleSymbols( find({ longname: {left: 'module:'} }), members.modules );
 
-    // generate the pretty-printed source files first so other pages can link to them
-    if (outputSourceFiles) {
-        generateSourceFiles(sourceFiles, opts.encoding);
-    }
+    view.versions = [];
+    gitSemverTags().then(function(versions){
+        view.versions = versions;
 
-    if (members.globals.length) { generate('Global', [{kind: 'globalobj'}], globalUrl); }
-
-    // index page displays information from package.json
-    var packages = find({kind: 'package'});
-
-    generate('Home',
-        packages.concat(
-            [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
-        ),
-    indexUrl);
-
-    // set up the lists that we'll use to generate pages
-    var classes = taffy(members.classes);
-    var modules = taffy(members.modules);
-    var namespaces = taffy(members.namespaces);
-    var mixins = taffy(members.mixins);
-    var externals = taffy(members.externals);
-    var interfaces = taffy(members.interfaces);
-
-    Object.keys(helper.longnameToUrl).forEach(function(longname) {
-        var myModules = helper.find(modules, {longname: longname});
-        if (myModules.length) {
-            generate('Module: ' + myModules[0].name, myModules, helper.longnameToUrl[longname]);
+        // generate the pretty-printed source files first so other pages can link to them
+        if (outputSourceFiles) {
+            generateSourceFiles(sourceFiles, opts.encoding);
         }
 
-        var myClasses = helper.find(classes, {longname: longname});
-        if (myClasses.length) {
-            generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
+        if (members.globals.length) { generate('Global', [{kind: 'globalobj'}], globalUrl); }
+
+        // index page displays information from package.json
+        var packages = find({kind: 'package'});
+
+        generate('Home',
+            packages.concat(
+                [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
+            ),
+        indexUrl);
+
+        // set up the lists that we'll use to generate pages
+        var classes = taffy(members.classes);
+        var modules = taffy(members.modules);
+        var namespaces = taffy(members.namespaces);
+        var mixins = taffy(members.mixins);
+        var externals = taffy(members.externals);
+        var interfaces = taffy(members.interfaces);
+
+        Object.keys(helper.longnameToUrl).forEach(function(longname) {
+            var myModules = helper.find(modules, {longname: longname});
+            if (myModules.length) {
+                generate('Module: ' + myModules[0].name, myModules, helper.longnameToUrl[longname]);
+            }
+
+            var myClasses = helper.find(classes, {longname: longname});
+            if (myClasses.length) {
+                generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
+            }
+
+            var myNamespaces = helper.find(namespaces, {longname: longname});
+            if (myNamespaces.length) {
+                generate('Namespace: ' + myNamespaces[0].name, myNamespaces, helper.longnameToUrl[longname]);
+            }
+
+            var myMixins = helper.find(mixins, {longname: longname});
+            if (myMixins.length) {
+                generate('Mixin: ' + myMixins[0].name, myMixins, helper.longnameToUrl[longname]);
+            }
+
+            var myExternals = helper.find(externals, {longname: longname});
+            if (myExternals.length) {
+                generate('External: ' + myExternals[0].name, myExternals, helper.longnameToUrl[longname]);
+            }
+
+            var myInterfaces = helper.find(interfaces, {longname: longname});
+            if (myInterfaces.length) {
+                generate('Interface: ' + myInterfaces[0].name, myInterfaces, helper.longnameToUrl[longname]);
+            }
+        });
+
+        copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
+
+        // TODO: move the tutorial functions to templateHelper.js
+        function generateTutorial(title, tutorial, filename) {
+            var $ = cheerio.load(tutorial.parse(), {
+                decodeEntities: false,
+                normalizeWhitespace: false
+            });
+            var tutorialData = {
+                docs: null, // docs property가 없으면 layout.tmpl에서 에러 발생함 (lnb쪽에 멤버 리스팅 목록 컨트롤을 위해 docs를 참고함)
+                env: env,
+                isTutorial: true,
+                title: title,
+                header: tutorial.title,
+                children: tutorial.children,
+                codeHtml: htmlsafe($('div.code-html').html() || ''),
+                codeJs: htmlsafe($('script.code-js').html() || ''),
+                filename: filename,
+                package: find({kind: 'package'})[0]
+            };
+
+            var tutorialPath = path.join(outdir, filename),
+                html = view.render('tutorial.tmpl', tutorialData);
+
+            // yes, you can use {@link} in tutorials too!
+            html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
+
+            fs.writeFileSync(tutorialPath, html, 'utf8');
         }
 
-        var myNamespaces = helper.find(namespaces, {longname: longname});
-        if (myNamespaces.length) {
-            generate('Namespace: ' + myNamespaces[0].name, myNamespaces, helper.longnameToUrl[longname]);
+        // tutorials can have only one parent so there is no risk for loops
+        function saveChildren(node) {
+            node.children.forEach(function(child) {
+                generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
+                saveChildren(child);
+            });
         }
+        saveChildren(tutorials);
 
-        var myMixins = helper.find(mixins, {longname: longname});
-        if (myMixins.length) {
-            generate('Mixin: ' + myMixins[0].name, myMixins, helper.longnameToUrl[longname]);
-        }
-
-        var myExternals = helper.find(externals, {longname: longname});
-        if (myExternals.length) {
-            generate('External: ' + myExternals[0].name, myExternals, helper.longnameToUrl[longname]);
-        }
-
-        var myInterfaces = helper.find(interfaces, {longname: longname});
-        if (myInterfaces.length) {
-            generate('Interface: ' + myInterfaces[0].name, myInterfaces, helper.longnameToUrl[longname]);
-        }
     });
 
-    copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
-
-    // TODO: move the tutorial functions to templateHelper.js
-    function generateTutorial(title, tutorial, filename) {
-        var $ = cheerio.load(tutorial.parse(), {
-            decodeEntities: false,
-            normalizeWhitespace: false
-        });
-        var tutorialData = {
-            docs: null, // docs property가 없으면 layout.tmpl에서 에러 발생함 (lnb쪽에 멤버 리스팅 목록 컨트롤을 위해 docs를 참고함)
-            env: env,
-            isTutorial: true,
-            title: title,
-            header: tutorial.title,
-            children: tutorial.children,
-            codeHtml: htmlsafe($('div.code-html').html() || ''),
-            codeJs: htmlsafe($('script.code-js').html() || ''),
-            filename: filename,
-            package: find({kind: 'package'})[0]
-        };
-
-        var tutorialPath = path.join(outdir, filename),
-            html = view.render('tutorial.tmpl', tutorialData);
-
-        // yes, you can use {@link} in tutorials too!
-        html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
-
-        fs.writeFileSync(tutorialPath, html, 'utf8');
-    }
-
-    // tutorials can have only one parent so there is no risk for loops
-    function saveChildren(node) {
-        node.children.forEach(function(child) {
-            generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
-            saveChildren(child);
-        });
-    }
-    saveChildren(tutorials);
 };
