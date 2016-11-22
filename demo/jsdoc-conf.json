@@ -7,7 +7,9 @@
   "templates": {
     "name": "Doc Template",
     "footerText": "NHN Entertainment Frontend Development Lab",
-    "versionSwitcher": true
+    "versionSwitcher": {
+        "versions": ["1.0.0", "~1.0.3"]
+    }
   },
   "opts": {
     "encoding": "utf8",
