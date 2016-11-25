@@ -718,7 +718,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
 
     // TODO: move the tutorial functions to templateHelper.js
-    function generateTutorial(title, tutorial, filename) {
+    function generateTutorial(title, tutorial, filename, originalFileName) {
         var $ = cheerio.load(tutorial.parse(), {
             decodeEntities: false,
             normalizeWhitespace: false
@@ -733,6 +733,7 @@ exports.publish = function(taffyData, opts, tutorials) {
             codeHtml: htmlsafe($('div.code-html').html() || ''),
             codeJs: htmlsafe($('script.code-js').html() || ''),
             filename: filename,
+            originalFileName: originalFileName,
             package: find({kind: 'package'})[0]
         };
 
@@ -748,7 +749,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     // tutorials can have only one parent so there is no risk for loops
     function saveChildren(node) {
         node.children.forEach(function(child) {
-            generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
+            var originalFileName = child.name;
+            generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name), originalFileName);
             saveChildren(child);
         });
     }
