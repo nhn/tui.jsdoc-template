@@ -765,6 +765,12 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // Generate versionSwitcher
     if (packageInfo && packageInfo.version && conf.versionSwitcher) {
-        generateVersionSwitcher(env.opts.destination, packageInfo.version, conf.name || packageInfo.name, conf.versionSwitcher.versions, conf.versionSwitcher.excludeLevel);
+        generateVersionSwitcher({
+            outputDir: env.opts.destination,
+            currentVersion: packageInfo.version,
+            pageTitle: conf.name || packageInfo.name,
+            semverRanges: conf.versionSwitcher.versions,
+            excludeLevel: conf.versionSwitcher.excludeLevel
+        });
     }
 };

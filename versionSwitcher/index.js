@@ -11,23 +11,25 @@ var semverTruncate = require('semver-truncate');
 /**
  * Generates the index.html, the versionsSwitcher directory and its contents in
  * the output directory.
- * @param  {String} outputDir      Path to the output folder for the generated documentation
- * @param  {String} currentVersion Current version from package.json
- * @param  {String} pageTitle      Used as content of the <title> element of the page
- * @param  {Array} semverRanges    Array of semver ranges from JSDoc config property versionSwitcher.versions
- * @param  {String} excludeLevel   Exclude level from JSDoc config property versionSwitcher.versions
+ * @param  {Object} options                Object containing options for creating the version switcher
+ * @param  {String} options.outputDir      Path to the output folder for the generated documentation
+ * @param  {String} options.currentVersion Current version from package.json
+ * @param  {String} options.pageTitle      Used as content of the <title> element of the page
+ * @param  {Array} options.semverRanges    Array of semver ranges from JSDoc config property versionSwitcher.versions
+ * @param  {String} options.excludeLevel   Exclude level from JSDoc config property versionSwitcher.versions
  */
-module.exports = function (outputDir, currentVersion, pageTitle, semverRanges, excludeLevel) {
+module.exports = function (options) {
     var staticJSDocTemplateDir = path.normalize(path.join(__dirname, '../static'));
+    var outputDir;
     var versionSwitcherOutputDir;
     var staticVersionSwitcherDir;
     var versionSwitcherData = {
-        currentVersion: currentVersion,
-        pageTitle: pageTitle
+        currentVersion: options.currentVersion,
+        pageTitle: options.pageTitle
     };
 
     // Prepare directories
-    outputDir = path.normalize(outputDir);
+    outputDir = path.normalize(options.outputDir);
     fs.mkdirSync(path.join(outputDir, 'versionSwitcher'));
     versionSwitcherOutputDir = path.normalize(path.join(outputDir, 'versionSwitcher'));
     staticVersionSwitcherDir = path.normalize(__dirname + '/static');
@@ -50,8 +52,8 @@ module.exports = function (outputDir, currentVersion, pageTitle, semverRanges, e
         var selectedVersions = semverTags;
 
         // Filter by versions if versionSwitcher.versions
-        if (semverRanges) {
-            selectedVersions = _.chain(semverRanges)
+        if (options.semverRanges) {
+            selectedVersions = _.chain(options.semverRanges)
                                 .map(function(semverRange){
                                     return _.filter(semverTags, function(semverTag){
                                         return semver.satisfies(semverTag, semverRange) === true;
@@ -62,7 +64,7 @@ module.exports = function (outputDir, currentVersion, pageTitle, semverRanges, e
         }
 
         // Exclude release levels if versionSwitcher.excludeLevel
-        switch (excludeLevel) {
+        switch (options.excludeLevel) {
             case 'patch':
                 selectedVersions = _.chain(selectedVersions)
                                     .map(function(version){
