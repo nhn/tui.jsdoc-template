@@ -6,6 +6,7 @@ var Promise = require('bluebird');
 var gitSemverTags = Promise.promisify(require('git-semver-tags'));
 var semver = require('semver');
 var _ = require('lodash');
+var semverTruncate = require('semver-truncate');
 
 /**
  * Generates the index.html, the versionsSwitcher directory and its contents in
@@ -14,8 +15,9 @@ var _ = require('lodash');
  * @param  {String} currentVersion Current version from package.json
  * @param  {String} pageTitle      Used as content of the <title> element of the page
  * @param  {Array} semverRanges    Array of semver ranges from JSDoc config property versionSwitcher.versions
+ * @param  {String} excludeLevel   Exclude level from JSDoc config property versionSwitcher.versions
  */
-module.exports = function (outputDir, currentVersion, pageTitle, semverRanges) {
+module.exports = function (outputDir, currentVersion, pageTitle, semverRanges, excludeLevel) {
     var staticJSDocTemplateDir = path.normalize(path.join(__dirname, '../static'));
     var versionSwitcherOutputDir;
     var staticVersionSwitcherDir;
@@ -45,28 +47,55 @@ module.exports = function (outputDir, currentVersion, pageTitle, semverRanges) {
     gitSemverTags().then(function(semverTags){
         return semverTags;
     }).then(function(semverTags) {
+        var selectedVersions = semverTags;
 
         // Filter by versions if versionSwitcher.versions
         if (semverRanges) {
-            versionSwitcherData.versions = _.chain(semverRanges)
-                                                .map(function(semverRange){
-                                                    return _.filter(semverTags, function(semverTag){
-                                                        return semver.satisfies(semverTag, semverRange) === true;
-                                                    })
-                                                })
-                                                .flatten()
-                                                .uniq()
-                                                .sort(function(a, b) {
-                                                    if (a < b) {
-                                                        return -1;
-                                                    }
-                                                    return 1;
-                                                })
-                                                .reverse()
-                                                .value();
-        } else {
-            versionSwitcherData.versions = semverTags;
+            selectedVersions = _.chain(semverRanges)
+                                .map(function(semverRange){
+                                    return _.filter(semverTags, function(semverTag){
+                                        return semver.satisfies(semverTag, semverRange) === true;
+                                    })
+                                })
+                                .flatten()
+                                .value();
         }
+
+        // Exclude release levels if versionSwitcher.excludeLevel
+        switch (excludeLevel) {
+            case 'patch':
+                selectedVersions = _.chain(selectedVersions)
+                                    .map(function(version){
+                                        return semverTruncate(version, 'minor');
+                                    })
+                                    .value();
+                break;
+            case 'minor':
+                selectedVersions = _.chain(selectedVersions)
+                                    .map(function(version){
+                                        return semverTruncate(version, 'major');
+                                    })
+                                    .value();
+                break;
+            default:
+                selectedVersions = _.chain(selectedVersions)
+                                    .map(function(version){
+                                        return semverTruncate(version, 'patch');
+                                    })
+                                    .value();
+                break;
+        }
+
+        versionSwitcherData.versions = _.chain(selectedVersions)
+                                        .uniq()
+                                        .sort(function(a, b) {
+                                            if (a < b) {
+                                                return -1;
+                                            }
+                                            return 1;
+                                        })
+                                        .reverse()
+                                        .value();
 
         // Generate {outputDir}/versionSwitcher/data.js
         fs.writeFileSync(path.normalize(versionSwitcherOutputDir + '/data.js'), 'var data = ' + JSON.stringify(versionSwitcherData) + ';');
