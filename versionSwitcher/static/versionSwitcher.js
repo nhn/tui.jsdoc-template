@@ -2,8 +2,11 @@ $(function () {
 
     var $versionSwitcher = $('#selectVersion');
     var options = [];
+    var $iFrame = $('#docs');
 
     $('title').html(data.pageTitle);
+
+    $iFrame.attr('src', './' + data.currentVersion);
 
     $.each(data.versions, function(index, version) {
         // Get rid of semver version prefixes
@@ -11,11 +14,10 @@ $(function () {
 
         options.push('<option value="' + version + '">v' + version +'</option>');
     });
-
     $versionSwitcher.html(options);
 
     $versionSwitcher.on('change', function (e) {
-        $('#docs').attr('src', './' + e.target.value);
+        $iFrame.attr('src', './' + e.target.value);
     });
 
 });
