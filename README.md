@@ -95,6 +95,8 @@ Exclude release levels:
 **Please note:**
  * The version switcher gets the versions via Git tags. But JSDoc only generates the current sources. So keep in mind that you have to generate the docs for each tag. Otherwise switching versions will lead to 404 errors.
  * You have to provide the current version via `opts.package`. See example configuration below.
+ * It’s possible to deep link to older version with appending a hash followed by a version number to the URL of the generated docs.
+  * Example: http://localhost:8080/#1.3.0
 
 ### Example configuration
 
