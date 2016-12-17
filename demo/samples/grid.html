@@ -4,16 +4,79 @@
     <meta charset="utf-8">
     <title>1. Basic Example</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/nhnent/tui.grid/1.5.1/dist/grid.min.css" />
+    <style>
+        #grid {width: 600px; float:left; margin-right:20px;}
+        #theme {width: 200px; float:left;}
+        #custom-text {width: 300px; height:520px; font-size:12px;}
+        h4 {margin: 5px 0;}
+        .preset {margin-bottom:15px;}
+        .custom p {margin: 5px 0}
+    </style>
 </head>
 <body>
 <h1><a href="https://github.com/nhnent/tui.grid" target="_blank">TUI Grid</a></h1>
 <div class="code-html">
-    <div>
-        <div id="wrapper1">
+    <div id="grid"></div>
+    <div id="theme">
+        <div class="preset">
+            <h4>Preset</h4>
+            <button class="btn-theme" data-preset="default">default</button>
+            <button class="btn-theme" data-preset="striped">striped</button>
+            <button class="btn-theme" data-preset="clean">clean</button>
         </div>
-    </div>
-    <div>
-        <div id="log" style="overflow:auto; width:500px; height:300px">
+        <div class="custom">
+            <h4>Custom options</h4>
+            <p><textarea id="custom-text">
+{
+    grid: {
+        background: '#fff',
+        border: '#ccc',
+        text: '#444'
+    },
+    selection: {
+        background: '#4daaf9',
+        border: '#004082'
+    },
+    toolbar: {
+        border: '#ccc',
+        background: '#fff'
+    },
+    scrollbar: {
+        background: '#f5f5f5',
+        thumb: '#d9d9d9',
+        active: '#c1c1c1'
+    },
+    cell: {
+        normal: {
+            background: '#fbfbfb',
+            border: '#e0e0e0'
+        },
+        head: {
+            background: '#eee',
+            border: '#ccc'
+        },
+        editable: {
+            background: '#fbfbfb'
+        },
+        selectedHead: {
+            background: '#d8d8d8'
+        },
+        focused: {
+            border: '#418ed4'
+        },
+        disabled: {
+            text: '#b0b0b0'
+        },
+        evenRow: {
+            background: '#fbfbfb'
+        },
+        currentRow: {
+            background: '#e0ffe0'
+        }
+    }
+}
+        </textarea></p>
+            <p><button class="btn-custom">Apply</button></p>
         </div>
     </div>
 </div>
@@ -26,238 +89,86 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/nhnent/tui.grid/1.5.1/dist/grid.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/nhnent/tui.grid/1.5.1/examples/data/grid-row-2000.js"></script>
 <script type="text/javascript" class="code-js">
-    function log(str) {
-        var $log = $('#log'),
-                original,
-                arr = [$log.html()];
-        str = '[' + new Date().toString() + '] ' + str;
-        arr.unshift(str);
-        $log.html(arr.join('<br>'));
-    }
     var grid = new tui.Grid({
-        el: $('#wrapper1'),
-        selectType: 'checkbox',
-        columnFixIndex: 5,
-        displayRowCount: 10,
-        headerHeight: 135,
-        minimumColumnWidth: 20,
-        columnMerge : [
+        el: $('#grid'),
+        headerHeight: 40,
+        displayRowCount: 15,
+        minimumColumnWidth: 100,
+        rowHeight: 35,
+        columnModelList: [
             {
-                columnName : "mergeColumn1",
-                title : "배송방식+상품주문번호",
-                columnNameList : ["deliveryType", "productOrderNo"]
+                columnName: '_button',
+                width: 30
             },
             {
-                columnName : "mergeColumn2",
-                title : "구매자명+구매자ID",
-                columnNameList : ["orderName", "orderId"]
-            },
-            {
-                columnName : "mergeColumn3",
-                title : "구매자명+구매자ID+수취인명",
-                columnNameList : ["mergeColumn2", "addressee"]
-            },
-            {
-                columnName : "mergeColumn4",
-                title : "주문상태+결제방법",
-                columnNameList : ["payState", "payType"]
-            },
-            {
-                columnName : "mergeColumn5",
-                title : "구매자명+구매자ID+수취인명+주문상태+결제방법+결제일",
-                columnNameList : ["mergeColumn3", "mergeColumn4", "date"]
-            }
-        ],
-        columnModelList : [
-            {
-                "title" : "<b>날짜</b>",
-                "columnName" : "date1",
-                "width" : 100,
-                "editOption" : {
+                title: 'ID',
+                columnName: 'c1',
+                align: 'center',
+                editOption: {
+                    beforeContent: 'FE',
                     type: 'text'
                 }
             },
             {
-                "title" : "<b>배송방식</b>",
-                "columnName" : "deliveryType",
-                "width" : 100,
-                "editOption" : {
-                    type: 'text',
-                    maxLength : 10,
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("배송 callback", changeEvent)
-                    }
-                }
-            },
-            {
-                "title" : "<b>상품주문번호</b>",
-                "columnName" : "productOrderNo",
-                "align" : "center",
-                "width" : 100,
+                title: 'Name',
+                defaultValue: 2,
+                columnName: 'c2',
+                align: 'center',
                 editOption: {
-                    type: 'normal'
-                }
-            },
-            {
-                "title" : "<b>히든컬럼</b>",
-                "columnName" : "hiddenColumn",
-                "align" : "center",
-                "width" : 100,
-                "isHidden" : true
-            },
-            {
-                "title" : "<b>상품가격</b>",
-                "columnName" : "productPrice",
-                "width" : 100,
-                "align" : "right",
-                "editOption" : {
                     type: 'text',
-                    "maxLength" : 10,
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("상품가격 callback", changeEvent);
-                    },
-                    "afterContent" : " 원"
-                },
-                "formatter" : function(columnValue){
-                    var sValue = String(columnValue) || "0";
-                    return sValue.replace(/(\d)(?=(\d{3})+$)/gi, "$1,");
                 }
             },
             {
-                "title" : "<b>구매자명</b>",
-                "columnName" : "orderName",
-                "width" : 100,
-                "align" : "center",
-                "formatter" : function(columnValue, rowData){
-                    return "<a href='http://www.naver.com/"+rowData["rowKey"]+"' target='_blank'>"+columnValue+"</a>";
-                }
-            },
-            {
-                "title" : "<b>구매자ID</b>",
-                "columnName" : "orderId",
-                "width" : 100,
-                "editOption" : {
-                    "type" : 'text',
-                    "maxLength" : 10,
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("change event : ", changeEvent)
-                    }
-                },
-                "formatter" : function(columnValue){
-                    var nRandom = parseInt(Math.random() * 3, 10);
-                    //return nRandom == 0 ? "DISABLE" : columnValue;
-                    return columnValue;
-                }
-            },
-            {
-                "title" : "<b>수취인명</b>",
-                "width" : 120,
-                "align" : "center",
-                "columnName" : "addressee",
-                "formatter" : function(columnValue, rowData){
-                    return columnValue+' <a href="#" class="btn_text2 open_detail">상세</a>';
-                }
-            },
-            {
-                "title" : "<b>주문상태</b>",
-                "columnName" : "payState",
-                "width" : 100
-            },
-            {
-                "title" : "<b>결제방법</b>",
-                "columnName" : "payType",
-                "width" : 120
-            },
-            {
-                "title" : "<b>결제일</b>",
-                "columnName" : "date",
-                "width" : 120,
-                "align" : "center",
-                "editOption" : {
+                title: 'Score',
+                columnName: 'c3',
+                align: 'center',
+                editOption: {
                     type: 'text',
-                    "maxLength" : 8
-                },
-                "formatter" : function(columnValue){
-                    var sValue = String(columnValue);
-                    return sValue ? (sValue.substr(0,4)+"년 "+sValue.substr(4,2)+"월 "+sValue.substr(6,8)+"일") : "";
-                }
-            },
-            {
-                "title" : "<b>배송상태</b>",
-                "columnName" : "deliveryState",
-                "width" : 120,
-                "align" : "center",
-                "editOption" : {
-                    "type" : 'radio',
-                    "list" : [
-                        {"value" : "0", "text" : "배송준비중"},
-                        {"value" : "1", "text" : "배송중"},
-                        {"value" : "2", "text" : "배송완료"}
-                    ],
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("셀렉트박스 값 변경 이벤트 ", changeEvent);
-                    }
-                }
-            },
-            {
-                "title" : "<b>택배사</b>",
-                "columnName" : "deliveryCompany",
-                "width" : 120,
-                "align" : "center",
-                "editOption" : {
-                    "type" : 'select',
-                    "list" : [
-                        {"value" : "01", "text" : "대한통운"},
-                        {"value" : "02", "text" : "한진택배"},
-                        {"value" : "03", "text" : "KGB택배"},
-                        {"value" : "04", "text" : "우체국택배"},
-                        {"value" : "05", "text" : "경동택배"},
-                        {"value" : "06", "text" : "현대택배"},
-                        {"value" : "07", "text" : "동부택배"},
-                        {"value" : "08", "text" : "CJ GLS"}
-                    ],
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("셀렉트박스 값 변경 이벤트 : ", changeEvent);
-                    }
-                }
-            },
-            {
-                "title" : "배송비 결제",
-                "columnName" : "deliveryPeeType",
-                "align" : "center",
-                "width" : 230,
-                "editOption" : {
-                    "type" : 'checkbox',
-                    "list" : [
-                        {"value" : "01", "text" : "선택"},
-                        {"value" : "02", "text" : "결제완료"},
-                        {"value" : "03", "text" : "미결제"},
-                        {"value" : "04", "text" : "착불"}
-                    ],
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("체크박스 값 변경 이벤트 : ", changeEvent);
-                    },
-                    "useViewMode": false
-                },
-                "formatter" : function(columnValue){
-                    return Number(columnValue) < 2 ? "DISABLED" : columnValue;
-                }
-            },
-            {
-                "title" : "<b>송장번호</b>",
-                "columnName" : "deliveryNo",
-                "width" : 120,
-                "align" : "center",
-                "editOption" : {
-                    "type" : 'text',
-                    "checkPattern" : /[\d]*/g,
-                    "changeBeforeCallback" : function(changeEvent){
-                        console.log("텍스트박스 값 변경 이벤트 : ", changeEvent);
-                    }
+                    afterContent: ' Point',
                 }
             }
         ]
     });
-    grid.setRowList(dummyRowList);
+    var rowList = [];
+    (function() {
+        _.times(20, function(number) {
+            rowList.push({
+                c1: String(Math.random()).substring(2, 10),
+                c3: Math.round(Math.random() * 10000)
+            });
+        })
+    })();
+    rowList[0].c2 = 'Mustafa Cosme';
+    rowList[1].c2 = 'Gunnar Fausto';
+    rowList[2].c2 = 'Junior Morgan';
+    rowList[3].c2 = 'Tódor Ingo';
+    rowList[4].c2 = 'Zezé Obadiah';
+    rowList[5].c2 = 'Alfwin Damir';
+    rowList[6].c2 = 'Feroz Fredrik';
+    rowList[7].c2 = 'Archer Beniamino';
+    rowList[8].c2 = 'Dado Shaul';
+    rowList[9].c2 = 'Svetoslav Eder';
+    rowList[10].c2 = 'Lauri Gligor';
+    rowList[11].c2 = 'Ruben Bèr';
+    rowList[12].c2 = 'Vicenç Hadrien';
+    rowList[13].c2 = 'Borna Rochus';
+    rowList[14].c2 = 'Kristijonas Tate';
+    rowList[15].c2 = 'Georg Ormazd';
+    rowList[16].c2 = 'Kumara Archimedes';
+    rowList[17].c2 = 'Hershel Radomil';
+    rowList[18].c2 = 'Toma Levan';
+    rowList[19].c2 = 'Njord Thoko';
+    grid.setRowList(rowList);
+    grid.disableRow(6);
+    var currentPresetName = 'default';
+    $('.btn-theme').click(function() {
+        var preset = $(this).data('preset');
+        currentPresetName = preset;
+        tui.Grid.applyTheme(preset);
+    });
+    $('.btn-custom').click(function() {
+        var options = eval('(' + $('#custom-text').val() + ')');
+        tui.Grid.applyTheme(currentPresetName, options);
+    });
 </script>
 </html>
