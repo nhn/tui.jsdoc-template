@@ -29,9 +29,7 @@
 
     <article>
         <?js
-            var src = filename.replace(/tutorial-(.+)[_]?.html/, function(match, srcName) {
-                return 'tutorials/' + srcName + '.html';
-            });
+            var src = 'tutorials/' + originalFileName + '.html';
         ?>
         <iframe id="example-result" width="100%" height="800" frameborder="0" src=<?js= src ?>></iframe>
         <div id="example-js" class="hidden"><pre class="prettyprint source"><?js= codeJs ?></pre></div>
