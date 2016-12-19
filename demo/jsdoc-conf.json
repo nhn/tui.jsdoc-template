@@ -6,7 +6,11 @@
   },
   "templates": {
     "name": "Doc Template",
-    "footerText": "NHN Entertainment Frontend Development Lab"
+    "footerText": "NHN Entertainment Frontend Development Lab",
+    "versionSwitcher": {
+        "versions": ["1.0.0", ">=1.0.3"],
+        "excludeLevel": "patch"
+    }
   },
   "opts": {
     "encoding": "utf8",
