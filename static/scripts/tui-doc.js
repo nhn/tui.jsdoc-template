@@ -184,4 +184,24 @@ function removeWhiteSpace(value) {
     return value.replace(/\s/g, '');
 }
 
+/*************** TOOGLE SUB NAV ***************/
+$(function() {
 
+    function toggleSubNav(e) {
+        $(e.currentTarget).next().toggleClass('hidden');
+        $(e.currentTarget).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+    }
+
+    $lnb.find('.lnb-api').each(function() {
+        $(this).find('.toggleSubnav').filter(function() {
+            return $(this).next(':empty').length === 0;
+        }).each(function() {
+            $(this).removeClass('hidden');
+            $(this).on('click', toggleSubNav);
+            if ($(this).next().is(':not(.hidden)')) {
+                $(this).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+            }
+        });
+    });
+
+});

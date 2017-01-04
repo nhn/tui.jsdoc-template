@@ -10,6 +10,7 @@ var taffy = require('taffydb').taffy;
 var template = require('jsdoc/template');
 var util = require('util');
 var cheerio = require('cheerio'); // for parse html to dom
+var generateVersionSwitcher = require('./versionSwitcher');
 
 var htmlsafe = helper.htmlsafe;
 var linkto = helper.linkto;
@@ -365,6 +366,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 }
                 itemsNav += '<li>'
                     + linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''))
+                    + ' <button type="button" class="hidden toggleSubnav btn btn-link">'
+                    + '     <span class="glyphicon glyphicon-plus"></span>'
+                    + '</button>'
                     + buildSubNav(item)
                     + '</li>';
             }
@@ -548,6 +552,11 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
+    // update outdir if necessary, then create outdir
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    if (packageInfo && packageInfo.version && conf.versionSwitcher) {
+        outdir = path.join( outdir, (packageInfo.version) );
+    }
     fs.mkPath(outdir);
 
     // copy the template's static files to outdir
@@ -755,4 +764,9 @@ exports.publish = function(taffyData, opts, tutorials) {
         });
     }
     saveChildren(tutorials);
+
+    // Generate versionSwitcher
+    if (packageInfo && packageInfo.version && conf.versionSwitcher) {
+        generateVersionSwitcher(env.opts.destination, packageInfo.version, conf.name || packageInfo.name);
+    }
 };

@@ -52,7 +52,8 @@ var watchPaths = [
     'static/scripts/**/*.js',
     'static/styles/**/*.css',
     'tmpl/**/*.tmpl',
-    'publish.js'
+    'publish.js',
+    'versionSwitcher/**/*'
 ];
 
 /**

@@ -58,6 +58,16 @@ ul, ol, li {list-style:none; padding-left:0; margin-left:0;}
 .lnb .lnb-examples a:hover {
     color: #a3cfdf;
 }
+.lnb .lnb-api .toggleSubnav {
+    padding: 2px 2px;
+    margin-bottom: 2px;
+}
+.lnb .lnb-api .toggleSubnav:focus {
+    outline: 0;
+}
+.lnb .lnb-api .toggleSubnav {
+    font-size: 10px;
+}
 .lnb .member-type {
     margin-top: 5px;
     margin-left: 5px;
