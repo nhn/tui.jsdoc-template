@@ -8,8 +8,10 @@ var logger = require('jsdoc/util/logger');
 var path = require('jsdoc/path');
 var taffy = require('taffydb').taffy;
 var template = require('jsdoc/template');
+var tutorial = require('jsdoc/tutorial');
 var util = require('util');
 var cheerio = require('cheerio'); // for parse html to dom
+var _ = require('underscore');
 
 var htmlsafe = helper.htmlsafe;
 var linkto = helper.linkto;
@@ -718,29 +720,30 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
-    copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
+    if (env.opts.tutorials) {
+        copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
+    }
 
     // TODO: move the tutorial functions to templateHelper.js
-    function generateTutorial(title, tutorial, filename, originalFileName) {
-        var $ = cheerio.load(tutorial.parse(), {
-            decodeEntities: false,
-            normalizeWhitespace: false
-        });
+    function generateTutorial(title, tutorial, fileName, originalFileName, isHtmlTutorial) {
         var tutorialData = {
-            docs: null, // docs property가 없으면 layout.tmpl에서 에러 발생함 (lnb쪽에 멤버 리스팅 목록 컨트롤을 위해 docs를 참고함)
-            env: env,
+            docs: null, // Erros in layout.tmpl if not exist docs property. (For left-nav member listing control)
             isTutorial: true,
+            env: env,
             title: title,
             header: tutorial.title,
             children: tutorial.children,
-            codeHtml: htmlsafe($('div.code-html').html() || ''),
-            codeJs: htmlsafe($('script.code-js').html() || ''),
-            filename: filename,
-            originalFileName: originalFileName,
+            isHtmlTutorial: isHtmlTutorial,
             package: find({kind: 'package'})[0]
         };
 
-        var tutorialPath = path.join(outdir, filename),
+        if (isHtmlTutorial) {
+            _.extend(tutorialData, generateHtmlTutorialData(tutorial, fileName, originalFileName));
+        } else {
+            tutorialData.content = tutorial.parse();
+        }
+
+        var tutorialPath = path.join(outdir, fileName),
             html = view.render('tutorial.tmpl', tutorialData);
 
         // yes, you can use {@link} in tutorials too!
@@ -749,11 +752,28 @@ exports.publish = function(taffyData, opts, tutorials) {
         fs.writeFileSync(tutorialPath, html, 'utf8');
     }
 
+    function generateHtmlTutorialData(tutorial, filename, originalFileName) {
+        var $ = cheerio.load(tutorial.parse(), {
+            decodeEntities: false,
+            normalizeWhitespace: false
+        });
+
+        return {
+            codeHtml: htmlsafe($('div.code-html').html() || ''),
+            codeJs: htmlsafe($('script.code-js').html() || ''),
+            originalFileName: originalFileName
+        };
+    }
+
     // tutorials can have only one parent so there is no risk for loops
     function saveChildren(node) {
         node.children.forEach(function(child) {
             var originalFileName = child.name;
-            generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name), originalFileName);
+            var isHtmlTutorial = child.type === tutorial.TYPES.HTML;
+            var title = 'Tutorial: ' + child.title;
+            var fileName = helper.tutorialToUrl(child.name);
+
+            generateTutorial(title, child, fileName, originalFileName, isHtmlTutorial);
             saveChildren(child);
         });
     }
