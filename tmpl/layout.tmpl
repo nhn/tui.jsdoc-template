@@ -8,11 +8,13 @@ var width, height;
 var style = '';
 var name = '';
 var version = '';
+var examplesName = '';
 
 if (templates) {
     logo = templates.logo;
     footerText = templates.footerText;
     name = templates.name || package.name || title;
+    examplesName = templates.examplesName || 'Examples';
 }
 
 if (logo) {
@@ -71,7 +73,7 @@ if (package) {
                 <a href="#"><h4>API</h4></a>
             </li>
             <li id="examples-tab">
-                <a href="#"><h4>Examples</h4></a>
+                <a href="#"><h4><?js= examplesName ?></h4></a>
             </li>
         </ol>
     <?js } ?>
