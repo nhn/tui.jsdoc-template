@@ -54,6 +54,16 @@ TUI JSDoc template has following features.
 }
 ```
 
+### Tab Names
+```
+"templates": {
+    "api": "API",
+    "tutorials": "Examples"
+}
+```
+
+`api` defaults to the value `API` and `tutorials` defaults to the value `Examples`.
+
 <br>
 ## Expose the html/js code to exmaple page
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.
