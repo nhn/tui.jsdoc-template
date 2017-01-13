@@ -57,8 +57,10 @@ TUI JSDoc template has following features.
 ### Tab Names
 ```
 "templates": {
-    "api": "API",
-    "tutorials": "Examples"
+    "tabNames": {
+        "api": "API",
+        "tutorials": "Examples"
+    }
 }
 ```
 
