@@ -1,12 +1,12 @@
 {
   "plugins": ["plugins/markdown"],
   "markdown": {
-    "parser": "gfm",
-    "hardwrap": true
+      "parser": "gfm",
+      "hardwrap": true
   },
   "templates": {
-    "name": "Doc Template",
-    "footerText": "NHN Entertainment Frontend Development Lab"
+      "name": "Doc Template",
+      "footerText": "NHN Entertainment Frontend Development Lab"
   },
   "opts": {
     "encoding": "utf8",
