@@ -33,7 +33,10 @@ gulp.task('demo:default', ['del'], function(done) {
  */
 gulp.task('demo', ['del'], function(done) {
     /* Demo config */
-    var config = require(path.join(DEMO_PATH, 'jsdoc-conf.json'));
+    var domeConfigPath = path.join(DEMO_PATH, 'jsdoc-conf.json');
+    var config = require(domeConfigPath);
+    delete require.cache[require.resolve(domeConfigPath)]; // remove cache
+
     config.opts.template = DEMO_TEMPLATE_PATH;
     config.opts.destination = DEMO_DESTINATION_PATH;
 

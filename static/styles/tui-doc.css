@@ -58,14 +58,14 @@ ul, ol, li {list-style:none; padding-left:0; margin-left:0;}
 .lnb .lnb-examples a:hover {
     color: #a3cfdf;
 }
-.lnb .lnb-api .toggleSubnav {
-    padding: 2px 2px;
-    margin-bottom: 2px;
+.lnb .lnb-api .toggle-subnav {
+    padding: 0 3px;
+    margin-bottom: 0;
 }
-.lnb .lnb-api .toggleSubnav:focus {
+.lnb .lnb-api .toggle-subnav:focus {
     outline: 0;
 }
-.lnb .lnb-api .toggleSubnav {
+.lnb .lnb-api .toggle-subnav {
     font-size: 10px;
 }
 .lnb .member-type {

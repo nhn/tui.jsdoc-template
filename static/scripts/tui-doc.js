@@ -185,15 +185,14 @@ function removeWhiteSpace(value) {
 }
 
 /*************** TOOGLE SUB NAV ***************/
-$(function() {
+function toggleSubNav(e) {
+    $(e.currentTarget).next().toggleClass('hidden');
+    $(e.currentTarget).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+}
 
-    function toggleSubNav(e) {
-        $(e.currentTarget).next().toggleClass('hidden');
-        $(e.currentTarget).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-    }
-
-    $lnb.find('.lnb-api').each(function() {
-        $(this).find('.toggleSubnav').filter(function() {
+$lnb.find('.lnb-api').each(function() {
+    $(this).find('.toggle-subnav')
+        .filter(function() {
             return $(this).next(':empty').length === 0;
         }).each(function() {
             $(this).removeClass('hidden');
@@ -202,6 +201,4 @@ $(function() {
                 $(this).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
             }
         });
-    });
-
 });
