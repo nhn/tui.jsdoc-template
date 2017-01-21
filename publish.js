@@ -752,9 +752,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
-    if (env.opts.tutorials) {
-        copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
-    }
+    copyRecursiveSync(env.opts.tutorials, outdir + '/tutorials');
 
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, fileName, originalFileName, isHtmlTutorial) {
