@@ -54,6 +54,14 @@ TUI JSDoc template has following features.
 }
 ```
 
+### Use collapsible api list
+*Default: `true`*
+```
+"templates": {
+    "useCollapsibles": ture
+}
+```
+
 ### Tab Names
 ```
 "templates": {
