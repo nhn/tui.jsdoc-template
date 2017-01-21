@@ -23,6 +23,11 @@ var data;
 var view;
 
 var outdir = path.normalize(env.opts.destination);
+var examplesName = 'Examples';
+
+if (env.conf.templates) {
+  examplesName = env.conf.templates.examplesName || examplesName;
+}
 
 // Set default useCollapsibles true
 env.conf.templates.useCollapsibles = env.conf.templates.useCollapsibles !== false;
@@ -355,7 +360,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
     if (items.length) {
         var itemsNav = '';
-        var className = itemHeading === 'Examples' ? 'lnb-examples hidden' : 'lnb-api hidden';
+        var className = itemHeading === examplesName ? 'lnb-examples hidden' : 'lnb-api hidden';
         var makeHtml = env.conf.templates.useCollapsibles ? makeCollapsibleItemHtmlInNav : makeItemHtmlInNav;
 
         items.forEach(function(item) {
@@ -429,7 +434,7 @@ function buildNav(members) {
     var seen = {};
     var seenTutorials = {};
 
-    nav += buildMemberNav(members.tutorials, 'Examples', seenTutorials, linktoTutorial, true);
+    nav += buildMemberNav(members.tutorials, examplesName, seenTutorials, linktoTutorial, true);
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
     nav += buildMemberNav(members.classes, 'Classes', seen, linkto);

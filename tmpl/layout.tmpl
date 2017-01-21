@@ -9,11 +9,15 @@ var width, height;
 var style = '';
 var name = '';
 var version = '';
+var examplesName = '';
+var apiName = '';
 
 if (templates) {
     logo = templates.logo;
     footerText = templates.footerText;
     name = templates.name || package.name || title;
+    examplesName = templates.tabNames.tutorials || 'Examples';
+    apiName = templates.tabNames.api || 'API'
 }
 
 if (logo) {
@@ -75,10 +79,10 @@ if (package) {
     <?js if (examples) { ?>
         <ol class="lnb-tab">
             <li id="api-tab">
-                <a href="#"><h4>API</h4></a>
+                <a href="#"><h4><?js= apiName ?></h4></a>
             </li>
             <li id="examples-tab">
-                <a href="#"><h4>Examples</h4></a>
+                <a href="#"><h4><?js= examplesName ?></h4></a>
             </li>
         </ol>
     <?js } ?>

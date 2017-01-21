@@ -54,6 +54,18 @@ TUI JSDoc template has following features.
 }
 ```
 
+### Tab Names
+```
+"templates": {
+    "tabNames": {
+        "api": "API",
+        "tutorials": "Examples"
+    }
+}
+```
+
+`api` defaults to the value `API` and `tutorials` defaults to the value `Examples`.
+
 ### Custom Styles
 With a folder structure like this:
 ```
