@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>External: jQuery.fn | Doc Template</title>
+    <title>Tutorial: Markdown tutorial | Doc Template</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,189 +48,63 @@
 <div class="main" id="main">
     
 
-
-
-
 <section>
-
-<header>
-    
-        <h2>jQuery.fn</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The jQuery plugin namespace.</p></div>
+    <header>
         
 
-        
-
-
-<dl class="details">
+        <h2>Markdown tutorial</h2>
+    </header>
 
     
-
+        <article class="readme">
+            <h1>Mastering markdown</h1><blockquote>
+<p>https://guides.github.com/features/mastering-markdown/</p>
+</blockquote>
+<h2>Examples</h2><h3>Text</h3><p>It's very easy to make some words <strong>bold</strong> and other words <em>italic</em> with Markdown. You can even <a href="http://google.com">link to Google!</a></p>
+<h3>Lists</h3><p>Sometimes you want numbered lists:</p>
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+<p>Sometimes you want bullet points:</p>
+<ul>
+<li>Start a line with a star</li>
+<li>Profit!</li>
+</ul>
+<p>Alternatively,</p>
+<ul>
+<li>Dashes work just as well</li>
+<li>And if you have sub points, put two spaces before the dash or star:<ul>
+<li>Like this</li>
+<li>And this</li>
+</ul>
+</li>
+</ul>
+<h3>Images</h3><p>If you want to embed images, this is how you do it:</p>
+<p><img src="https://octodex.github.com/images/yaktocat.png" alt="Image of Yaktocat"></p>
+<h3>Code</h3><p>There are many different ways to style code with GitHub's markdown. If you have inline code blocks, wrap them in backticks: <code>var example = true</code>.  If you've got a longer block of code, you can indent with four spaces:</p>
+<pre class="prettyprint source"><code>if (isAwesome){
+  return true
+}</code></pre><p>GitHub also supports something called code fencing, which allows for multiple lines without indentation:</p>
+<pre class="prettyprint source"><code>if (isAwesome){
+  return true
+}</code></pre><p>And if you'd like to use syntax highlighting, include the language:</p>
+<pre class="prettyprint source lang-javascript"><code>if (isAwesome){
+  return true
+}</code></pre><hr>
+<h3>Headers &amp; Quotes</h3><p>Sometimes it's useful to have different levels of headings to structure your documents. Start lines with a <code>#</code> to create headings. Multiple <code>##</code> in a row denote smaller heading sizes.</p>
+<h4>This is a fourth-tier heading</h4><p>You can use one <code>#</code> all the way up to <code>######</code> six for different heading sizes.</p>
+<p>If you'd like to quote someone, use the &gt; character before the line:</p>
+<blockquote>
+<p>Coffee. The finest organic suspension ever devised... I beat the Borg with it.</p>
+<ul>
+<li>Captain Janeway</li>
+</ul>
+</blockquote>
+        </article>
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="http://learn.jquery.com/plugins/">jQuery Plugins</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-                
-
-<dt>
-
-    
-        
-
-        <h4 class="name" id=".starfairy">
-            <span class="type-signature"><span class="icon green">static</span> </span>starfairy<span class="signature">()</span><span class="type-signature"></span>
-            
-            <div class="container-source members">
-                <code><a href="etc.js.html">etc.js</a></code>,
-                <code><a href="etc.js.html#line27">line 27</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>A jQuery plugin to make stars fly around your home page.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            </dl>
-    
-
-    
-
-    
-</article>
-
 </section>
-
 
 
 
@@ -246,13 +120,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'external:"jQuery.fn"_sub'.replace(/"/g, '_');
-        var selectedApi = document.getElementById(id); // do not use jquery selector
-        var $selectedApi = $(selectedApi);
-
-        $selectedApi.removeClass('hidden');
-        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-        showLnbApi();
+        showLnbExamples();
     </script>
 
 </body>
