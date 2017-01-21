@@ -1,6 +1,6 @@
 {
   "name": "tui-jsdoc-template",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Toast UI JSDoc Template",
   "main": "publish.js",
   "scripts": {
