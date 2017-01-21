@@ -1,6 +1,7 @@
 <?js
 var templates = env.conf.templates;
 var examples = env.conf.opts.tutorials;
+var css = templates.css;
 var logo = '';
 var footerText = '';
 var logoUrl = 'img/toast-ui.png';
@@ -49,6 +50,12 @@ if (package) {
     <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    <?js if (css) { ?>
+        <?js css.forEach(function(style) { ?>
+            <link type="text/css" rel="stylesheet" href="<?js= style ?>">
+        <?js }) ?>
+    <?js } ?>
 </head>
 <body>
 <nav class="lnb" id="lnb">
