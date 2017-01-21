@@ -21,8 +21,24 @@ var hasOwnProp = Object.prototype.hasOwnProperty;
 
 var data;
 var view;
+var tutorialsName;
 
 var outdir = path.normalize(env.opts.destination);
+
+
+env.conf.templates = _.extend({
+    useCollapsibles: true
+}, env.conf.templates);
+
+env.conf.templates.tabNames = _.extend({
+    api: 'API',
+    tutorials: 'Examples'
+}, env.conf.templates.tabNames);
+
+tutorialsName = env.conf.templates.tabNames.tutorials;
+
+// Set default useCollapsibles true
+env.conf.templates.useCollapsibles = env.conf.templates.useCollapsibles !== false;
 
 function find(spec) {
     return helper.find(data, spec);
@@ -352,9 +368,12 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
     if (items.length) {
         var itemsNav = '';
-        var className = itemHeading === 'Examples' ? 'lnb-examples hidden' : 'lnb-api hidden';
+        var className = itemHeading === tutorialsName ? 'lnb-examples hidden' : 'lnb-api hidden';
+        var makeHtml = env.conf.templates.useCollapsibles ? makeCollapsibleItemHtmlInNav : makeItemHtmlInNav;
 
         items.forEach(function(item) {
+            var linkHtml;
+
             if ( !hasOwnProp.call(item, 'longname') ) {
                 itemsNav += '<li>' + linktoFn('', item.name) + buildSubNav(item) + '</li>';
             }
@@ -365,10 +384,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 } else {
                     displayName = item.name;
                 }
-                itemsNav += '<li>'
-                    + linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''))
-                    + buildSubNav(item)
-                    + '</li>';
+
+                linkHtml = linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''));
+                itemsNav += makeHtml(item, linkHtml);
             }
         });
 
@@ -378,6 +396,23 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
     }
 
     return nav;
+}
+
+function makeItemHtmlInNav(item, linkHtml) {
+    return '<li>'
+        + linkHtml
+        + buildSubNav(item)
+        + '</li>';
+}
+
+function makeCollapsibleItemHtmlInNav(item, linkHtml) {
+    return '<li>'
+        + linkHtml
+        + '<button type="button" class="hidden toggle-subnav btn btn-link">'
+        + '  <span class="glyphicon glyphicon-plus"></span>'
+        + '</button>'
+        + buildSubNav(item)
+        + '</li>';
 }
 
 function linktoTutorial(longName, name) {
@@ -407,7 +442,7 @@ function buildNav(members) {
     var seen = {};
     var seenTutorials = {};
 
-    nav += buildMemberNav(members.tutorials, 'Examples', seenTutorials, linktoTutorial, true);
+    nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true);
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
     nav += buildMemberNav(members.classes, 'Classes', seen, linkto);
@@ -724,7 +759,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, fileName, originalFileName, isHtmlTutorial) {
         var tutorialData = {
-            docs: null, // Erros in layout.tmpl if not exist docs property. (For left-nav member listing control)
+            docs: null, // Erros in layout.tmpl if docs property does not exist. (For left-nav member listing control)
             isTutorial: true,
             env: env,
             title: title,

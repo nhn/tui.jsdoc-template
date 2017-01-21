@@ -1,19 +1,16 @@
 <?js
 var templates = env.conf.templates;
 var examples = env.conf.opts.tutorials;
-var logo = '';
-var footerText = '';
+var css = templates.css;
+var logo = templates.logo;
+var footerText = templates.footerText;
 var logoUrl = 'img/toast-ui.png';
 var width, height;
+var name = templates.name || package.name || title;
+var tutorialsName = templates.tabNames.tutorials;
+var apiName = templates.tabNames.api;
 var style = '';
-var name = '';
 var version = '';
-
-if (templates) {
-    logo = templates.logo;
-    footerText = templates.footerText;
-    name = templates.name || package.name || title;
-}
 
 if (logo) {
     logoUrl = logo.url || logoUrl;
@@ -38,7 +35,7 @@ if (package) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?js= name ?></title>
+    <title><?js= title + ' | ' + name ?></title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -49,6 +46,12 @@ if (package) {
     <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    <?js if (css) { ?>
+        <?js css.forEach(function(style) { ?>
+            <link type="text/css" rel="stylesheet" href="<?js= style ?>">
+        <?js }) ?>
+    <?js } ?>
 </head>
 <body>
 <nav class="lnb" id="lnb">
@@ -68,10 +71,10 @@ if (package) {
     <?js if (examples) { ?>
         <ol class="lnb-tab">
             <li id="api-tab">
-                <a href="#"><h4>API</h4></a>
+                <a href="#"><h4><?js= apiName ?></h4></a>
             </li>
             <li id="examples-tab">
-                <a href="#"><h4>Examples</h4></a>
+                <a href="#"><h4><?js= tutorialsName ?></h4></a>
             </li>
         </ol>
     <?js } ?>
@@ -94,9 +97,11 @@ if (package) {
 <?js if (!isTutorial) { ?>
     <script>
         var id = '<?js= docs[0].longname ?>_sub'.replace(/"/g, '_');
-        var element = document.getElementById(id); // do not use jquery selector
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
 
-        $(element).removeClass('hidden');
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
         showLnbApi();
     </script>
 <?js } else { ?>
