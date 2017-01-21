@@ -4,18 +4,18 @@
 ?>
 
 <section>
-    <header>
-        <?js if (children.length > 0) { ?>
-        <ul><?js
-            children.forEach(function(t) { ?>
-            <li><?js= self.tutoriallink(t.name) ?></li>
-        <?js }); ?></ul>
-        <?js } ?>
-
-        <h2><?js= header ?></h2>
-    </header>
-
     <?js if (isHtmlTutorial) { ?>
+        <header>
+            <?js if (children.length > 0) { ?>
+            <ul><?js
+                children.forEach(function(t) { ?>
+                <li><?js= self.tutoriallink(t.name) ?></li>
+            <?js }); ?></ul>
+            <?js } ?>
+
+            <h2><?js= header ?></h2>
+        </header>
+
         <?js hasCodeTab = !!(codeJs || codeHtml) ? 'nav nav-tabs' : 'nav nav-tabs hidden'; ?>
 
         <ul id="example-nav" class="<?js= hasCodeTab ?>">
