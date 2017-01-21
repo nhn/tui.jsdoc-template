@@ -131,7 +131,7 @@ function onKeyupEnter() {
 
 function moveToPage(url) {
     if (url) {
-        location = url;
+        window.location = url;
     }
     clear();
 }
@@ -195,10 +195,6 @@ $lnb.find('.lnb-api').each(function() {
         .filter(function() {
             return $(this).next(':empty').length === 0;
         }).each(function() {
-            $(this).removeClass('hidden');
-            $(this).on('click', toggleSubNav);
-            if ($(this).next().is(':not(.hidden)')) {
-                $(this).find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-            }
+            $(this).removeClass('hidden').on('click', toggleSubNav);
         });
 });
