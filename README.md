@@ -66,6 +66,33 @@ TUI JSDoc template has following features.
 
 `api` defaults to the value `API` and `tutorials` defaults to the value `Examples`.
 
+### Custom Styles
+With a folder structure like this:
+```
+static
+└── styles
+    └── custom.css
+    └── another.css
+```
+And a config like this:
+```js
+"templates": {
+    "default": {
+        "staticFiles": {
+            "include": ["static/"]
+        }
+    },
+    "css": [
+        "styles/custom.css",
+        "styles/another.css",
+        "http://example.com/remote.css"
+    ]
+}
+```
+
+`styles/custom.css`, `styles/another.css`, and `remote.css` get included in the layout.
+`default.staticFiles` is the build-in jsdoc way of copying extra files.
+
 <br>
 ## Expose the html/js code to exmaple page
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.
