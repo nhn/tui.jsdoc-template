@@ -6,7 +6,10 @@
   },
   "templates": {
       "name": "Doc Template",
-      "footerText": "NHN Entertainment Frontend Development Lab"
+      "footerText": "NHN Entertainment Frontend Development Lab",
+      "logo": {
+        "link": "https://github.com/nhnent/tui.jsdoc-template"
+      }
   },
   "opts": {
     "encoding": "utf8",

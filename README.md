@@ -4,57 +4,68 @@ Toast UI JSDoc template
 Demo: https://nhnent.github.io/tui.jsdoc-template/latest/
 
 ## install
+
 ```
 npm i -D tui-jsdoc-template
 ```
 
 ## Feature
-TUI JSDoc template has following features.
 
-* Navigation - AutoComplete Searchbox
-* Navigation - Members / Methods / Events
-* Navigation - API / Examples(Tutorials) Tab
-* Navigation - Resize
-* Examples - HTML/JS source tab in example page
+TUI JSDoc template has the following features:
+
+* Navigation:
+  * AutoComplete Searchbox
+  * Collapsible
+  * Members / Methods / Events
+  * API / Examples (Tutorials) switcher
+  * Resizable
+* Examples: HTML/JS source tab in example pages
 
 ![Example](https://cloud.githubusercontent.com/assets/12269563/20049432/69d2ed42-a506-11e6-980e-53b991e5ee5b.png)
 
 ## Configuration
+
 ([*jsdoc page - configuration*](http://usejsdoc.org/about-configuring-jsdoc.html#incorporating-command-line-options-into-the-configuration-file))
 
 ### Template
+
 ```
 "opts": {
     "template": "node_modules/tui-jsdoc-template"
 }
 ```
 
-### Logo Image
+### Logo
+
 ```
 "templates": {
     "logo": {
         "url": "http://nhnent.github.io/tui.component.tree/latest/styles/logo.png",
         "width": "150px",
-        "height": "13px"
+        "height": "13px",
+        "link": "https://github.com/nhnent/tui.jsdoc-template"
     }
 }
 ```
 
-### Page Title
+### Page title
+
 ```
 "templates": {
     "name": "Tui JSDoc Template"
 }
 ```
 
-### FooterText
+### Footer text
+
 ```
 "templates": {
-    "footerText": "blabla..."
+    "footerText": "My awesome footer text"
 }
 ```
 
 ### Use collapsible api list
+
 *Default: `true`*
 ```
 "templates": {
@@ -63,6 +74,7 @@ TUI JSDoc template has following features.
 ```
 
 ### Tab Names
+
 ```
 "templates": {
     "tabNames": {
@@ -75,6 +87,7 @@ TUI JSDoc template has following features.
 `api` defaults to the value `API` and `tutorials` defaults to the value `Examples`.
 
 ### Custom Styles
+
 With a folder structure like this:
 ```
 static
@@ -101,8 +114,8 @@ And a config like this:
 `styles/custom.css`, `styles/another.css`, and `remote.css` get included in the layout.
 `default.staticFiles` is the build-in jsdoc way of copying extra files.
 
-<br>
 ## Expose the html/js code to exmaple page
+
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.
 
 1. innerHTML of `script.code-js` tag
@@ -129,7 +142,7 @@ If `script` or `div` elements have `code-js` or `code-html` class, expose their 
 
 ```
 
-<br>
 ## Development
+
 1. Use `npm run serve` or `gulp serve` command to ascertain realtime.
 3. Api-Example tab, Auto-Complete and Resize functions are written in the `static/scripts/tui-doc.js` file.

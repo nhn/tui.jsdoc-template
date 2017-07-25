@@ -11,9 +11,11 @@ var tutorialsName = templates.tabNames.tutorials;
 var apiName = templates.tabNames.api;
 var style = '';
 var version = '';
+var logoLink = '';
 
 if (logo) {
     logoUrl = logo.url || logoUrl;
+    logoLink = logo.link || logoLink;
     width = logo.width;
     height = logo.height;
 }
@@ -56,7 +58,13 @@ if (package) {
 <body>
 <nav class="lnb" id="lnb">
     <div class="logo" style="<?js= style ?>">
-        <img src="<?js= logoUrl?>" width="100%" height="100%">
+        <?js if (logoLink) { ?>
+            <a href="<?js= logoLink?>" rel="noopener noreferrer" target="_blank">
+                <img src="<?js= logoUrl?>" width="100%" height="100%">
+            </a>
+        <?js } else { ?>
+            <img src="<?js= logoUrl?>" width="100%" height="100%">
+        <?js } ?>
     </div>
     <div class="title">
         <h1><a href="index.html" class="link"><?js= name ?></a></h1>
