@@ -28,6 +28,7 @@
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
-    "gulp-jsdoc3": "^1.0.1"
+    "gulp-jsdoc3": "^1.0.1",
+    "jsdoc": "^3.5.3"
   }
 }

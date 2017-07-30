@@ -22,6 +22,14 @@ var MyNamespace = {
  * @memberof MyNamespace
  */
 
+ /**
+  * Typedef on MyNamespace
+  * @typedef {object}myTypeDef
+  * @prop {string} a - Typedef prop "a"
+  * @prop {string} b - Typedef prop "b" 
+  * @memberof MyNamespace
+  */
+
 /**
  * Tui namespace
  * @namespace tui

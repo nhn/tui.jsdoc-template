@@ -4,14 +4,9 @@ var self = this;
 ?>
 
 <dt>
-
-    <?js if (data.kind !== 'module') { ?>
-        <?js if (data.kind === 'class' && data.classdesc) { ?>
-        <h2>Constructor</h2>
-        <?js } ?>
-
+    <?js if (data.kind !== 'module' && !data.hideconstructor) { ?>
         <h4 class="name" id="<?js= id ?>">
-            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + name + (data.signature || '') ?>
+            <?js= name ?>
             <?js if (data.meta && self.outputSourceFiles) {?>
             <div class="container-source members">
                 <code><?js= self.linkto(meta.shortpath) ?></code>,
@@ -24,11 +19,10 @@ var self = this;
         <p class="summary"><?js= summary ?></p>
         <?js } ?>
     <?js } ?>
-
 </dt>
 <dd>
 
-    <?js if (data.kind !== 'module' && data.description) { ?>
+    <?js if (data.kind !== 'module' && data.description && !data.hideconstructor) { ?>
     <div class="description">
         <?js= data.description ?>
     </div>
@@ -53,7 +47,7 @@ var self = this;
         <ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
     <?js } ?>
 
-    <?js if (data.params && params.length) { ?>
+    <?js if (data.params && params.length && !data.hideconstructor) { ?>
     <div class="container-params">
         <h5>Parameters:</h5>
         <?js= this.partial('params.tmpl', params) ?>

@@ -25,7 +25,6 @@ var tutorialsName;
 
 var outdir = path.normalize(env.opts.destination);
 
-
 env.conf.templates = _.extend({
     useCollapsibles: true
 }, env.conf.templates);
@@ -45,7 +44,11 @@ function find(spec) {
 }
 
 function tutoriallink(tutorial) {
-    return helper.toTutorial(tutorial, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
+    return helper.toTutorial(tutorial, null, {
+        tag: 'em', 
+        classname: 'disabled', 
+        prefix: 'Tutorial: '
+    });
 }
 
 function getAncestorLinks(doclet) {
@@ -53,11 +56,15 @@ function getAncestorLinks(doclet) {
 }
 
 function hashToLink(doclet, hash) {
-    if ( !/^(#.+)/.test(hash) ) { return hash; }
+    var url;
 
-    var url = helper.createLink(doclet);
+    if ( !/^(#.+)/.test(hash) ) {
+        return hash;
+    }
 
+    url = helper.createLink(doclet);
     url = url.replace(/(#.+|$)/, hash);
+
     return '<a href="' + url + '">' + hash + '</a>';
 }
 
@@ -167,12 +174,13 @@ function addSignatureReturns(f) {
     var attribsString = '';
     var returnTypes = [];
     var returnTypesString = '';
+    var source = f.yields || f.returns;
 
     // jam all the return-type attributes into an array. this could create odd results (for example,
     // if there are both nullable and non-nullable return types), but let's assume that most people
     // who use multiple @return tags aren't using Closure Compiler type annotations, and vice-versa.
-    if (f.returns) {
-        f.returns.forEach(function(item) {
+    if (source) {
+        source.forEach(function(item) {
             helper.getAttribs(item).forEach(function(attrib) {
                 if (attribs.indexOf(attrib) === -1) {
                     attribs.push(attrib);
@@ -183,7 +191,7 @@ function addSignatureReturns(f) {
         attribsString = buildAttribsString(attribs);
     }
 
-    if (f.returns) {
+    if (source) {
         returnTypes = addNonParamAttributes(f.returns);
     }
     if (returnTypes.length) {
@@ -229,9 +237,13 @@ function getPathFromDoclet(doclet) {
 }
 
 function generate(title, docs, filename, resolveLinks) {
+    var docData;
+    var html;
+    var outpath;
+
     resolveLinks = resolveLinks === false ? false : true;
 
-    var docData = {
+    docData = {
         env: env,
         isTutorial: false,
         title: title,
@@ -239,8 +251,8 @@ function generate(title, docs, filename, resolveLinks) {
         package: find({kind: 'package'})[0]
     };
 
-    var outpath = path.join(outdir, filename),
-        html = view.render('container.tmpl', docData);
+    outpath = path.join(outdir, filename);
+    html = view.render('container.tmpl', docData);
 
     if (resolveLinks) {
         html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
@@ -388,6 +400,8 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 linkHtml = linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''));
                 itemsNav += makeHtml(item, linkHtml);
             }
+
+            itemsSeen[item.longname] = true;
         });
 
         if (itemsNav !== '') {
@@ -441,11 +455,14 @@ function buildNav(members) {
     var nav = '';
     var seen = {};
     var seenTutorials = {};
+    var classesToShow = members.classes.filter(function(classItem) { // To support "@hideconstructor"
+        return !classItem.hideconstructor;
+    });
 
     nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true);
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
-    nav += buildMemberNav(members.classes, 'Classes', seen, linkto);
+    nav += buildMemberNav(classesToShow, 'Classes', seen, linkto);
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
@@ -677,6 +694,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     });
 
     var members = helper.getMembers(data);
+
     members.tutorials = tutorials.children;
 
     // output pretty-printed source files by default
@@ -759,7 +777,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, fileName, originalFileName, isHtmlTutorial) {
         var tutorialData = {
-            docs: null, // Erros in layout.tmpl if docs property does not exist. (For left-nav member listing control)
+            docs: null, // If there is no "docs" prop, Erros in layout.tmpl. (For left-nav member listing control)
             isTutorial: true,
             env: env,
             title: title,
