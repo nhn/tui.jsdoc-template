@@ -3,7 +3,7 @@ Toast UI JSDoc template
 
 Demo: https://nhnent.github.io/tui.jsdoc-template/latest/
 
-## install
+## Install
 
 ```
 npm i -D tui-jsdoc-template
