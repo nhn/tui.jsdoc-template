@@ -88,10 +88,6 @@
 
     <?js
         var classes = self.find({kind: 'class', memberof: doc.longname});
-        classes = classes.filter(function(classItem) {
-            return !classItem.hideconstructor; // Support "@hideconstructor" (tui-jsdoc-template)
-        });
-
         if (!isGlobalPage && classes && classes.length) {
     ?>
             <h3 class="subsection-title">Classes</h3>

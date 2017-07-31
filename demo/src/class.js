@@ -8,7 +8,7 @@ tui = tui || {};
 
 (function (ns) {
     /**
-     * Create Base Class
+     * Create Base instance
      * @class tui.component.Base
      * @param {object} data - data
      * @param {object} data.foo - foo
@@ -21,6 +21,11 @@ tui = tui || {};
          */
         this.data = data || {};
     };
+
+    /**
+     * @alias tui.component.Base.staticMethod
+     */
+    Base.staticMethod = function() {}
 
     Object.assign(Base.prototype, /** @lends tui.component.Base.prototype */ {
 
