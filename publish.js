@@ -455,14 +455,11 @@ function buildNav(members) {
     var nav = '';
     var seen = {};
     var seenTutorials = {};
-    var classesToShow = members.classes.filter(function(classItem) { // To support "@hideconstructor"
-        return !classItem.hideconstructor;
-    });
 
     nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true);
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
-    nav += buildMemberNav(classesToShow, 'Classes', seen, linkto);
+    nav += buildMemberNav(members.classes, 'Classes', seen, linkto);
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);

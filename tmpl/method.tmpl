@@ -4,9 +4,13 @@ var self = this;
 ?>
 
 <dt>
-    <?js if (data.kind !== 'module' && !data.hideconstructor) { ?>
+    <?js if (data.kind !== 'module') { ?>
         <h4 class="name" id="<?js= id ?>">
-            <?js= name ?>
+            <?js if (data.hideconstructor) { ?>
+                <?js= name ?>
+            <?js } else { ?>
+                <?js= (data.kind === 'class' ? 'new ' : '') + data.attribs + name + (data.signature ? data.signature : '') ?>
+            <?js } ?>    
             <?js if (data.meta && self.outputSourceFiles) {?>
             <div class="container-source members">
                 <code><?js= self.linkto(meta.shortpath) ?></code>,
