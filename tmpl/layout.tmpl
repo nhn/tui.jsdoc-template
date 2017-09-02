@@ -2,6 +2,7 @@
 var templates = env.conf.templates;
 var examples = env.conf.opts.tutorials;
 var css = templates.css;
+var scripts = templates.scripts;
 var logo = templates.logo;
 var footerText = templates.footerText;
 var logoUrl = 'img/toast-ui.png';
@@ -116,6 +117,11 @@ if (package) {
     <script>
         showLnbExamples();
     </script>
+<?js } ?>
+<?js if (scripts) { ?>
+    <?js scripts.forEach(function(script) { ?>
+      <script src="<?js= script ?>"></script>
+    <?js }) ?>
 <?js } ?>
 </body>
 </html>
