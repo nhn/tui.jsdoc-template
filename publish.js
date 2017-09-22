@@ -607,9 +607,8 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     staticFiles.forEach(function(fileName) {
         var toDir = fs.toDir( fileName.replace(fromDir, outdir) );
-        var toFileName = path.basename(fileName);
         fs.mkPath(toDir);
-        fs.copyFileSync( fileName, path.join(toDir, toFileName) );
+        fs.copyFileSync(fileName, toDir);
     });
 
     // copy user-specified static files to outdir
@@ -634,9 +633,8 @@ exports.publish = function(taffyData, opts, tutorials) {
             extraStaticFiles.forEach(function(fileName) {
                 var sourcePath = fs.toDir(filePath);
                 var toDir = fs.toDir( fileName.replace(sourcePath, outdir) );
-                var toFileName = path.basename(fileName);
                 fs.mkPath(toDir);
-                fs.copyFileSync( fileName, path.join(toDir, toFileName) );
+                fs.copyFileSync(fileName, toDir);
             });
         });
     }
