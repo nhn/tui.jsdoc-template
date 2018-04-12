@@ -69,7 +69,7 @@ TUI JSDoc template has the following features:
 *Default: `true`*
 ```
 "templates": {
-    "useCollapsibles": ture
+    "useCollapsibles": true
 }
 ```
 
