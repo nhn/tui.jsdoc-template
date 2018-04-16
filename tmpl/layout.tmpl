@@ -2,6 +2,9 @@
 var templates = env.conf.templates;
 var examples = env.conf.opts.tutorials;
 var css = templates.css;
+var ignoreDefaultTheme = templates.ignoreDefaultTheme;
+var ignoreDefaultLayout = templates.ignoreDefaultLayout;
+var scripts = templates.scripts;
 var logo = templates.logo;
 var footerText = templates.footerText;
 var logoUrl = 'img/toast-ui.png';
@@ -47,7 +50,14 @@ if (package) {
     <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    <?js if (!ignoreDefaultTheme) { ?>
+        <link type="text/css" rel="stylesheet" href="styles/tui-doc-theme.css">
+    <?js } ?>
+
+    <?js if (!ignoreDefaultLayout) { ?>
+        <link type="text/css" rel="stylesheet" href="styles/tui-doc-layout.css">
+    <?js } ?>
 
     <?js if (css) { ?>
         <?js css.forEach(function(style) { ?>
@@ -116,6 +126,11 @@ if (package) {
     <script>
         showLnbExamples();
     </script>
+<?js } ?>
+<?js if (scripts) { ?>
+    <?js scripts.forEach(function(script) { ?>
+      <script src="<?js= script ?>"></script>
+    <?js }) ?>
 <?js } ?>
 </body>
 </html>

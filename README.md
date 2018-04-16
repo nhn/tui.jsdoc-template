@@ -114,6 +114,28 @@ And a config like this:
 `styles/custom.css`, `styles/another.css`, and `remote.css` get included in the layout.
 `default.staticFiles` is the build-in jsdoc way of copying extra files.
 
+### ignore default theme css
+```s
+"templates": {
+    "ignoreDefaultTheme": true
+  }
+```
+### ignore default layout css
+```s
+"templates": {
+    "ignoreDefaultLayout": true
+  }
+```
+
+### add custom scripts
+```s
+"templates": {
+  "scripts": [
+      "path/to/some/script1",
+      "path/to/some/script2"
+    ],
+  }
+```
 ## Expose the html/js code to exmaple page
 
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.

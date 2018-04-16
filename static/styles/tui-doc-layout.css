@@ -1,0 +1,274 @@
+
+ul, ol, li {padding-left:0; margin-left:0;}
+
+/* Navigation - LNB */
+.lnb {
+    width: 290px;
+    position: absolute;
+    bottom: 30px;
+    top: 0;
+    overflow: auto;
+    left: 0;
+    padding: 0 20px;
+}
+.lnb .logo {
+    height: 13px;
+    margin: 20px auto 0;
+}
+.lnb .title {
+    text-align: center;
+    padding: 0 0 15px;
+}
+
+.lnb .lnb-api li,
+.lnb .lnb-examples li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.lnb .lnb-api .toggle-subnav {
+    padding: 0 3px;
+    margin-bottom: 0;
+}
+.lnb .lnb-api .toggle-subnav:focus {
+    outline: 0;
+}
+.lnb .member-type {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.lnb .inner li {
+    margin-left: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* LNB-TAB */
+.lnb-tab {
+    text-align: center;
+}
+.lnb-tab li {
+    display: inline-block;
+    padding-top: 15px;
+}
+
+
+/* MAIN-CONTENT */
+.main {
+    padding: 20px;
+    left: 297px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    overflow: auto;
+    margin-bottom: 35px;
+}
+.main article ol,
+.main article ul {
+    margin-left: 15px;
+}
+.main section header {
+    padding-top: 0;
+}
+.main section header h2 {
+    padding-left : 5px;
+}
+.main section article {
+    padding: 10px;
+}
+.main section article .container-overview {
+    padding: 15px 15px 0 15px;
+}
+.main section article h3.subsection-title {
+    padding:35px 0 0 5px;
+}
+
+.main section article dl dt .name {
+    padding: 3px 10px;
+}
+.main section article dl dd {
+    padding: 0 30px;
+}
+
+.main section article .container-source {
+    margin: -15px -15px 3px 0;
+    text-align: right;
+    padding-right: 10px;
+}
+.main section article .container-returns {
+    margin-bottom: 7px;
+}
+.main section article .container-returns span,
+.main section article .container-params table {
+    margin-left: 7px;
+    padding-left: 3px;
+    margin-bottom: 5px;
+}
+.main section article .container-returns p {
+    display: inline;
+}
+
+.main section article table,
+.main section article table th,
+.main section article table td {
+    vertical-align: top;
+    padding: 1px 3px;
+}
+.main section article table td.name,
+.main section article table td.type,
+.main section article table td.attributes,
+.main section article table td.default {
+    max-width: 100px;
+    min-width: 80px;
+    word-break: break-all;
+}
+
+.main section article table td p {
+    padding: 0;
+    margin: 0;
+}
+.main section article table td h6 {
+    padding: 0 0 0 3px;
+    margin: 3px 0 0 3px;
+}
+.main section article .container-properties table.props {
+    margin-top: -3px;
+}
+.main .main-content article {
+    padding:0;
+}
+.main .container-overview,
+.main .main-datail {
+    overflow: hidden;
+}
+.main .main-detail .tag-source {
+    float:left;
+    display:none;
+}
+.main .main-detail .tag-author {
+    float:left;
+}
+
+.iinenums .number {
+    display: inline-block;
+    width: 40px;
+}
+
+/* FOOTER */
+footer {
+    padding-top: 3px;
+    line-height: 35px;
+    height: 35px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+/* README*/
+
+.readme p,
+.readme ul,
+.readme ol {
+    padding: 3px 0 3px 5px;
+}
+
+.readme img {
+    max-width: 100%;
+}
+.readme h1 {
+    padding: 10px 0 5px 0;
+}
+.readme pre {
+    margin: 15px 3px;
+}
+.readme li p {
+    padding: 10px 0;
+}
+
+.readme h2 {
+    padding-bottom: 3px;
+}
+.readme h3 {
+    padding-bottom: 3px;
+}
+
+.readme table {
+    margin: 5px 30px 20px;
+}
+.readme table th,
+.readme table td {
+    padding: 2px 20px 2px 5px;
+}
+.readme section header h2 {
+    font-size:20px;
+    padding-left:10px;
+}
+.readme section .container-overview {
+    padding:15px 15px 10px;
+}
+
+.readme section .container-overview dt {float:left; }
+.readme section .container-overview dd {float:left; margin-left:10px; }
+.readme blockquote {
+    padding: inherit;
+    margin: inherit;
+}
+
+/* Search box */
+.search-container {
+    position: relative;
+    padding-bottom: 10px;
+}
+.search-container input {
+    padding: 7px;
+    width: 100%;
+}
+
+.search-container ul {
+    position: absolute;
+    width: 100%;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.search-container ul li {
+    text-align: left;
+    width: 100%;
+    padding: 4px 0 4px 7px;
+    overflow: hidden;
+    border: 0;
+}
+
+.search-container ul li .group {
+    margin-left: 10px;
+}
+
+/* ETC */
+.logo {
+    width: 90px;
+    vertical-align: initial;
+}
+.hidden {
+    display: none;
+}
+.footer-text {
+    padding-left: 3px;
+    display: inline-block;
+}
+#example-nav {
+    margin-top: 15px;
+}
+#resizer {
+    width: 7px;
+    position: fixed;
+    left: 290px;
+    height: 100%;
+}
+
+span.icon {
+    padding: 1px 2px;
+}
+
+span.arrow {
+    padding-right: 5px;
+}
