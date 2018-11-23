@@ -114,7 +114,7 @@ And a config like this:
 `styles/custom.css`, `styles/another.css`, and `remote.css` get included in the layout.
 `default.staticFiles` is the build-in jsdoc way of copying extra files.
 
-## Expose the html/js code to exmaple page
+## Expose the html/js code to example page
 
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.
 
