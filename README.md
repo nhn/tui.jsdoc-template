@@ -1,7 +1,7 @@
 # TUI JSDoc Template
 Toast UI JSDoc template
 
-Demo: https://nhnent.github.io/tui.jsdoc-template/latest/
+Demo: https://nhn.github.io/tui.jsdoc-template/latest/
 
 ## Install
 
