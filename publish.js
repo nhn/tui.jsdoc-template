@@ -556,7 +556,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     helper.setTutorials(tutorials);
 
     data = helper.prune(data);
-    data.sort('longname, version, since');
+    if (env.conf.templates.sort) data.sort('longname, version, since');
     helper.addEventListeners(data);
 
     var sourceFiles = {};
