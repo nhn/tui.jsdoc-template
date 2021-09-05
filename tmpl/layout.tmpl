@@ -3,6 +3,7 @@ var templates = env.conf.templates;
 var examples = env.conf.opts.tutorials;
 var css = templates.css;
 var logo = templates.logo;
+var favicon = templates.favicon;
 var footerText = templates.footerText;
 var logoUrl = 'img/toast-ui.png';
 var width, height;
@@ -12,12 +13,19 @@ var apiName = templates.tabNames.api;
 var style = '';
 var version = '';
 var logoLink = '';
+var faviconMime = '';
 
 if (logo) {
     logoUrl = logo.url || logoUrl;
     logoLink = logo.link || logoLink;
     width = logo.width;
     height = logo.height;
+}
+
+if (favicon) {
+	var faviconIsIco = favicon.toLowerCase().endsWith('.ico');
+	var faviconIsGif = favicon.toLowerCase().endsWith('.gif');
+	faviconMime = faviconIsIco ? 'image/x-icon' : faviconIsGif ? 'image/gif' : 'image/png';
 }
 
 if (width) {
@@ -54,6 +62,11 @@ if (package) {
             <link type="text/css" rel="stylesheet" href="<?js= style ?>">
         <?js }) ?>
     <?js } ?>
+
+    <?js if (favicon) { ?>
+        <link type="<?js= faviconMime ?>" rel="icon" href="<?js= favicon ?>" />
+    <?js } ?>
+
 </head>
 <body>
 <nav class="lnb" id="lnb">
